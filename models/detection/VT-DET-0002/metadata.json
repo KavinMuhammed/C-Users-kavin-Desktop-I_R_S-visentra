@@ -1,0 +1,220 @@
+{
+ "version": "1.0.0",
+ "task": "detection",
+ "architecture": "YOLOX",
+ "variant": "tiny",
+ "framework": {
+  "torch": "2.14.1+cu130",
+  "torchvision": "0.29.1+cu130",
+  "numpy": "2.5.3",
+  "pillow": "12.3.0",
+  "yolox": "vendored 0.3.0 @ 41977848 (model code only)",
+  "python": "3.13.16"
+ },
+ "classes": [
+  "crack",
+  "dent",
+  "corrosion"
+ ],
+ "supported_classes": [
+  "crack",
+  "dent",
+  "corrosion"
+ ],
+ "experimental_classes": [],
+ "use_policy": {
+  "mode": "operational_review_assisted",
+  "decision": "docs/PHASE_13_DECISIONS.md",
+  "rule": "Every prediction is stored as a pending AI proposal; an engineer confirms, rejects or reclassifies it before sign-off."
+ },
+ "input_size": [
+  416,
+  416
+ ],
+ "preprocessing": {
+  "mode": "letterbox",
+  "fill": 114,
+  "colour_order": "BGR",
+  "scale": "0-255, no mean/std normalisation (YOLOX convention)"
+ },
+ "taxonomy": "TAX-1.0",
+ "class_mapping": {
+  "mapping_id": "CMAP-001",
+  "version": 2,
+  "sha256": "7b2ea35e9fafceaf6b04ddc11d62a462215f4b372e8d1dce7f8c558313265146"
+ },
+ "dataset": {
+  "prep_id": "VT-PREP-001",
+  "datasets": [
+   "VT-DS-001",
+   "VT-DS-002"
+  ],
+  "splits": {
+   "train": "datasets/splits/VT-PREP-001/train.csv",
+   "valid": "datasets/splits/VT-PREP-001/valid.csv",
+   "test": "datasets/splits/VT-PREP-001/test.csv"
+  },
+  "train_split_digest": "acd587ba1c1aa375abb9b33609b0aae4a077f5de9020bcded5985bacb9104aba",
+  "valid_split_digest": "bebfa32027bc2ed50cd94bb657f7ae3597d4dbabf7ae75962cd4940d11605dce",
+  "test_split_digest": "37506d05e32a6a25f6d93b7fc8f592da1056fb4e3e8af78a0f25027d504b40df",
+  "licence": "VT-DS-001: CC BY 4.0, attribution required; VT-DS-002: CC BY 4.0, attribution required \u2014 see DATASET_LICENCE_REGISTER"
+ },
+ "training_summary": {
+  "train_images": 8435,
+  "valid_images": 886,
+  "test_images": 441,
+  "epochs_run": 30
+ },
+ "experiment": {
+  "experiment_id": "VT-EXP-005",
+  "run_id": "VT-EXP-005-20261017T105157Z",
+  "config_sha256": "b34adcee3d3f1400d3885c51a0976a617791d34f35ada9fb5f6b455e9ca99cd9",
+  "best": {
+   "value": 0.08026815699577415,
+   "epoch": 27,
+   "metric": "AP50_95"
+  },
+  "checkpoint_epoch": 27,
+  "source": {
+   "commit": "fde8dbea5c8aebb02c51fbaadd9eafc0f43db76c",
+   "ml_code_dirty": true
+  }
+ },
+ "thresholds": {
+  "score_threshold": {
+   "crack": 0.025,
+   "dent": 0.025,
+   "corrosion": 0.275
+  },
+  "review_threshold": {
+   "crack": 0.05,
+   "dent": 0.05,
+   "corrosion": 0.425
+  },
+  "nms_iou": 0.65,
+  "match_iou": 0.5,
+  "policy": "score_threshold = argmax F2 (recall-weighted), review_threshold = argmax F1; chosen on the validation split"
+ },
+ "evaluation": {
+  "test": {
+   "evaluated_at": "2026-10-18T00:14:08Z",
+   "split": "test",
+   "subset": "eval_representatives",
+   "split_digest": "37506d05e32a6a25f6d93b7fc8f592da1056fb4e3e8af78a0f25027d504b40df",
+   "AP50": 0.2459357539020469,
+   "AP50_95": 0.10485404483863221,
+   "per_class_at_threshold": {
+    "crack": {
+     "tp": 48,
+     "fp": 237,
+     "fn": 105,
+     "precision": 0.16842105263157894,
+     "recall": 0.3137254901960784,
+     "f1": 0.21917808219178084,
+     "score_threshold": 0.025,
+     "gt_instances": 153
+    },
+    "dent": {
+     "tp": 82,
+     "fp": 442,
+     "fn": 155,
+     "precision": 0.15648854961832062,
+     "recall": 0.3459915611814346,
+     "f1": 0.21550591327201052,
+     "score_threshold": 0.025,
+     "gt_instances": 237
+    },
+    "corrosion": {
+     "tp": 52,
+     "fp": 25,
+     "fn": 83,
+     "precision": 0.6753246753246753,
+     "recall": 0.3851851851851852,
+     "f1": 0.49056603773584917,
+     "score_threshold": 0.275,
+     "gt_instances": 135
+    }
+   }
+  },
+  "valid_evaluation": "valid-20261018T001258Z"
+ },
+ "weights_licence": {
+  "model_code": "Apache-2.0 (YOLOX, vendored)",
+  "pretrained_init": "Apache-2.0 model code; COCO-pretrained YOLOX-Tiny initialisation (Apache-2.0), fine-tuned on VT-DS-001/002 (CC BY 4.0)",
+  "pretrained_source": "experiments/VT-EXP-004/VT-EXP-004-20261017T064141Z (after epoch index 2, EMA)",
+  "pretrained_sha256": "0735404277ba6dce8046fe34a182043abed57e70a3e66b1cf1118e829fd46102",
+  "fine_tuning_data": "VT-DS-001: CC BY 4.0, attribution required; VT-DS-002: CC BY 4.0, attribution required \u2014 see DATASET_LICENCE_REGISTER"
+ },
+ "pretrained": {
+  "source_url": "experiments/VT-EXP-004/VT-EXP-004-20261017T064141Z (after epoch index 2, EMA)",
+  "licence": "Apache-2.0 model code; COCO-pretrained YOLOX-Tiny initialisation (Apache-2.0), fine-tuned on VT-DS-001/002 (CC BY 4.0)",
+  "sha256": "0735404277ba6dce8046fe34a182043abed57e70a3e66b1cf1118e829fd46102",
+  "loaded_tensors": 462,
+  "skipped_shape_mismatch": [],
+  "not_in_checkpoint": []
+ },
+ "readiness": "EVALUATED_LIMITED",
+ "readiness_reasons": [
+  "MLG-04: no per-class targets were agreed with a domain reviewer before the test run",
+  "MLG-06: missed defects have not been reviewed by a qualified person",
+  "MLG-01: dataset licence/provenance questions are open"
+ ],
+ "readiness_evidence": {
+  "data_ready": true,
+  "run_completed": true,
+  "thresholds_from_validation": true,
+  "final_test_evaluation": true,
+  "test_split_digest_matches": true,
+  "per_class_metrics": true,
+  "limitations_documented": true,
+  "targets_preregistered": null,
+  "targets_met": null,
+  "missed_defect_review_done": false,
+  "dataset_licence_cleared": false
+ },
+ "known_limitations": [
+  "Three classes: crack, dent, corrosion. 'crack' follows the VT-DS-001 source labels, which also mark holes, tears and other skin ruptures: read it as 'crack or skin rupture'.",
+  "Corrosion was learned from one Boeing 747 (VT-DS-002 'Rust', drone frames); results on other aircraft, paint systems and corrosion types are unknown.",
+  "Class mappings are PROVISIONAL_ACCEPTED by product-owner decision (CMAP-001 v2), not verified by a qualified inspector.",
+  "Trained and evaluated on public datasets (VT-DS-001, VT-DS-002); the test split is held out by photo group, not by aircraft, so it is not an aircraft-independent evaluation.",
+  "Accuracy is limited (see the recorded held-out evaluation): the model misses many real defects and raises false alarms. A missing detection never means the surface is free of defects.",
+  "Background images (ImageNet samples and generated non-photos) teach the model to stay silent on unrelated content, and an aircraft-surface check (VT-GATE-0001) runs first; neither is a guarantee on unusual images.",
+  "Robustness augmentation (blur, noise, JPEG, greyscale, contrast) targets phone, drone and AI-generated pictures; it was not separately evaluated on AI-generated images.",
+  "Decision support only. Every detection is a pending AI proposal that an engineer must confirm, reject or reclassify. Confidence is model certainty, not severity or airworthiness risk."
+ ],
+ "output_contract": "visiontra.detection_output/1 (ml/visentra_ml/detection/output.py)",
+ "artifact_format": "torch_state_dict",
+ "loading": "visentra_ml.detection.artifact.load(bundle_dir) \u2014 torch.load(weights_only=True)",
+ "model_id": "VT-DET-0002",
+ "format": "visiontra-detector/1",
+ "files": {
+  "config.json": {
+   "sha256": "31ab7caaabddfbcc35e70ab5378d1a93caa357c0f9486a5bfa6567475745faee",
+   "bytes": 3487
+  },
+  "environment.json": {
+   "sha256": "ffdf37d67ddce6cecad655d2abfc02210c261e89756f7de77ec759f5b7bfc8dc",
+   "bytes": 451
+  },
+  "evaluation_test.json": {
+   "sha256": "d2814704771fa84380028779ad672ae3b9af985bd3e7d80c23867ed30cde2f51",
+   "bytes": 8355
+  },
+  "evaluation_valid.json": {
+   "sha256": "e0abe956017b24ee2f127d6243fe945404157adf3679cca7553cbd531e4526cc",
+   "bytes": 33596
+  },
+  "model.pt": {
+   "sha256": "913906b678e9f26cb3d48a21d315cd6466a715a4433c12c6ebe48cd28af33dad",
+   "bytes": 20348731
+  },
+  "run.json": {
+   "sha256": "512e0d19a071aeb46348e4ee7359eac41927a8da0162b446b30df3d909cf49cf",
+   "bytes": 3851
+  },
+  "thresholds.json": {
+   "sha256": "51e3ed696cfbf5d3a5e6349744dabb484792cbeab0ebb966e4aec6f0fd462c6a",
+   "bytes": 25821
+  }
+ }
+}

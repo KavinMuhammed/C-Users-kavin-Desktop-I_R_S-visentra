@@ -1,0 +1,123 @@
+{
+ "_note": "Captured from a real VT-DET-0001 run through POST /api/v1/experimental/models/VT-DET-0001/predict (workspace, 2026-10-12). Image: fixture validation image valid-4 (not a test-split image).",
+ "response": {
+  "schema": "visiontra.experimental_inference/1",
+  "request_id": "43486d98f64097db",
+  "inference_id": "4e994266ffac4ad69716053568a95b07",
+  "status": "completed",
+  "outcome": "detections",
+  "model": {
+   "model_id": "VT-DET-0001",
+   "version": "0.1.0",
+   "architecture": "YOLOX-Tiny",
+   "readiness": "EVALUATED_LIMITED",
+   "supported_classes": [],
+   "experimental_classes": [
+    "dent"
+   ],
+   "weights_sha256": "69114ceab4c23f3d8d80d18468636f3e2774c785b7883102dfcc8eaf0fba2d3e",
+   "intended_use": "Experimental engineering evaluation in a development environment. Not for aircraft maintenance decisions.",
+   "operational_use": false,
+   "evidence": {
+    "model_card": "docs/MODEL_CARD.md",
+    "evaluation_report": "docs/MODEL_EVALUATION_REPORT.md",
+    "experiment_log": "docs/EXPERIMENT_LOG.md",
+    "artifacts": "docs/MODEL_ARTIFACTS.md"
+   }
+  },
+  "image": {
+   "width": 640,
+   "height": 640,
+   "orientation": 1,
+   "format": "JPEG",
+   "sha256": "8c2b117dc329b33a39631be2225bd193986db3730fc75039c0b82add524b06da",
+   "coordinate_frame": "oriented_image_pixels"
+  },
+  "preprocessing": {
+   "mode": "letterbox",
+   "S_w": 416,
+   "S_h": 416,
+   "r_x": 0.65,
+   "r_y": 0.65,
+   "pad_x": 0,
+   "pad_y": 0
+  },
+  "inference_settings": {
+   "score_threshold": {
+    "dent": 0.05
+   },
+   "nms_iou": 0.65,
+   "review_threshold": {
+    "dent": 0.075
+   },
+   "source": "model bundle thresholds.json, chosen on the validation split",
+   "note": "Inference setting of an experimental model \u2014 not an inspector-approved operational threshold."
+  },
+  "predictions": [
+   {
+    "ordinal": 1,
+    "class_id": 0,
+    "class_name": "dent",
+    "display_label": "dent (experimental)",
+    "confidence": 0.051145,
+    "low_confidence": true,
+    "kind": "ai_suggestion",
+    "experimental": true,
+    "box": {
+     "x_min": 508.19,
+     "y_min": 582.18,
+     "x_max": 639.41,
+     "y_max": 640
+    },
+    "box_normalised": {
+     "x": 0.7940498498769907,
+     "y": 0.9096541771521934,
+     "w": 0.2050336691049429,
+     "h": 0.09034582284780654
+    },
+    "clipped": true
+   }
+  ],
+  "prediction_count": 1,
+  "suppressed": {
+   "below_threshold": 28,
+   "degenerate": 0
+  },
+  "warnings": [
+   "Experimental model \u2014 dent only.",
+   "Research output. Not validated for aircraft maintenance decisions.",
+   "Predictions may be missed or incorrectly localised. Human inspection is required.",
+   "Decision support only: every detection must be reviewed by a qualified person before any maintenance decision."
+  ],
+  "experimental": {
+   "mode": "development_only",
+   "banner": "EXPERIMENTAL \u2014 dent only \u2014 development use. Not an inspection finding. Not for maintenance decisions.",
+   "scope_classes": [
+    "dent"
+   ],
+   "readiness": "EVALUATED_LIMITED",
+   "operational_use": false,
+   "findings_eligible": false,
+   "report_eligible": false,
+   "promotion_gate": "VT-GATE-OP-01",
+   "promotion_gate_passed": false
+  },
+  "device": "cpu",
+  "timing_ms": {
+   "upload_read": 0.2,
+   "validation": 13.5,
+   "preprocess": 7.7,
+   "model": 126.9,
+   "postprocess": 1.2,
+   "end_to_end": 613.3
+  },
+  "record": {
+   "kind": "audit_event",
+   "audit_event_id": "b65d80350944437297b8e0570ee7ee5e",
+   "action": "experimental_inference.run",
+   "image_stored": false,
+   "note": "Experimental run recorded in the audit log only. It is not an inspection, finding or report."
+  },
+  "inferred_at": "2026-10-12T01:22:56Z"
+ }
+}

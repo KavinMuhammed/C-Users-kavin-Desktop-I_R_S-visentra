@@ -1,0 +1,134 @@
+/* ==========================================================================
+   styles/signature.css — Phase 20 signature layer (loaded LAST; the single place
+   where the brand palette is decided). It re-points the existing tokens; it adds
+   no new component system.
+
+   Palette roles
+     obsidian / graphite  surfaces           champagne gold   brand, primary action, focus, active nav
+     electric cyan / ice  technical accents  controlled crimson  meaningful warnings ("likely", failures)
+     silver / white       typography
+   Defect-category colours (crack / dent / corrosion) are evidence colours and are
+   NOT changed here. Decoration never sits on top of the inspected image.
+   ========================================================================== */
+:root {
+  --sig-obsidian: #05070B; --sig-graphite: #0C1016; --sig-graphite-2: #121822; --sig-graphite-3: #1A212D;
+  --sig-gold: #D9B871; --sig-gold-hi: #F1DCA7; --sig-gold-lo: #9C7C3A; --sig-gold-soft: rgba(217, 184, 113, .10); --sig-gold-line: rgba(217, 184, 113, .38);
+  --sig-crimson: #FF3B5C; --sig-crimson-soft: rgba(255, 59, 92, .11);
+  --sig-cyan: #4FE3FF; --sig-ice: #CFF6FF; --sig-silver: #C9D1DC; --sig-white: #F5F7FA;
+  --sig-metal: linear-gradient(135deg, #F6E7C1 0%, #D9B871 30%, #9C7C3A 55%, #E9D199 80%, #F6E7C1 100%);
+  --sig-edge-gold: 0 0 0 1px rgba(217, 184, 113, .30), 0 0 26px -8px rgba(217, 184, 113, .55);
+  --sig-edge-cyan: 0 0 0 1px rgba(79, 227, 255, .26), 0 0 22px -8px rgba(79, 227, 255, .5);
+  /* motion tokens: short, purposeful */
+  --sig-t-fast: 120ms; --sig-t: 220ms; --sig-t-slow: 420ms; --sig-ease: cubic-bezier(.2, .7, .2, 1); --sig-ease-out: cubic-bezier(.16, 1, .3, 1);
+  /* layout rhythm: 8-pt grid */
+  --sig-gutter: 24px; --sig-gap: 16px;
+}
+:root[data-theme="dark"] {
+  --bg: var(--sig-graphite); --bg-sunken: var(--sig-obsidian);
+  --aero-bg: var(--sig-graphite); --aero-bg-2: var(--sig-graphite-2); --aero-elev: var(--sig-graphite-2); --aero-elev-2: var(--sig-graphite-3);
+  --surface: rgba(16, 21, 30, .82); --surface-solid: var(--sig-graphite-2); --surface-hover: var(--sig-graphite-3);
+  --fg: var(--sig-white); --fg-2: #AEB7C4; --fg-3: #7F8A99;
+  --accent: var(--sig-gold); --accent-hover: var(--sig-gold-hi); --accent-soft: var(--sig-gold-soft); --accent-fg: #17120A; --accent-line: var(--sig-gold-line);
+  --focus: var(--sig-gold-hi); --bad: var(--sig-crimson); --bad-soft: var(--sig-crimson-soft);
+  --neon-red: var(--sig-crimson); --neon-cyan: var(--sig-cyan); --neon-ice: var(--sig-ice);
+  --panel: linear-gradient(180deg, rgba(20, 25, 34, .86), rgba(10, 13, 19, .9));
+  --chart-1: #D9B871; --chart-2: #4FE3FF; --chart-3: #9B8CFF; --chart-4: #55D6A2; --chart-5: #6CB6FF; --chart-6: #FF8FB1;
+}
+:root[data-theme="dark"] body { background: var(--sig-obsidian); }
+
+/* ---------- backdrop: fine engineering grid, gold horizon, cyan technical glow ---------- */
+:root[data-theme="dark"] body::before {
+  background:
+    linear-gradient(rgba(201, 209, 220, .035) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgba(201, 209, 220, .035) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(rgba(217, 184, 113, .05) 1px, transparent 1px) 0 0 / 240px 240px,
+    linear-gradient(90deg, rgba(217, 184, 113, .05) 1px, transparent 1px) 0 0 / 240px 240px,
+    radial-gradient(1000px 480px at 82% -10%, rgba(217, 184, 113, .10), transparent 62%),
+    radial-gradient(760px 420px at -5% 108%, rgba(79, 227, 255, .07), transparent 60%);
+}
+:root[data-theme="dark"] body::after { opacity: .35; }
+
+/* ---------- panels: graphite glass, champagne edge on hover ---------- */
+:root[data-theme="dark"] .card { border-color: rgba(201, 209, 220, .08); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), 0 22px 60px -34px rgba(0, 0, 0, .9);
+  transition: border-color var(--sig-t) var(--sig-ease), box-shadow var(--sig-t) var(--sig-ease), transform var(--sig-t) var(--sig-ease); }
+:root[data-theme="dark"] .card:hover { border-color: rgba(217, 184, 113, .26); box-shadow: inset 0 1px 0 rgba(241, 220, 167, .06), 0 0 0 1px rgba(217, 184, 113, .10), 0 24px 60px -30px rgba(0, 0, 0, .9), 0 0 40px -24px rgba(217, 184, 113, .5); }
+:root[data-theme="dark"] .card-h { border-bottom-color: rgba(201, 209, 220, .07); }
+:root[data-theme="dark"] .card-h h3 { color: var(--sig-white); }
+:root[data-theme="dark"] .sum-card .card-h { background: linear-gradient(90deg, rgba(217, 184, 113, .10), transparent 70%); }
+
+/* ---------- navigation: gold active rail with a smooth slide-in ---------- */
+:root[data-theme="dark"] .sidebar { background: linear-gradient(180deg, rgba(10, 13, 19, .95), rgba(5, 7, 11, .98)); border-right-color: rgba(217, 184, 113, .12); }
+.nav-item { transition: background var(--sig-t) var(--sig-ease), color var(--sig-t) var(--sig-ease), box-shadow var(--sig-t) var(--sig-ease); }
+:root[data-theme="dark"] .nav-item:hover { background: rgba(217, 184, 113, .06); color: var(--sig-white); }
+:root[data-theme="dark"] .nav-item[aria-current="page"] { background: linear-gradient(90deg, rgba(217, 184, 113, .16), rgba(217, 184, 113, .02)); color: var(--sig-gold-hi);
+  box-shadow: inset 2px 0 0 var(--sig-gold), -8px 0 20px -8px rgba(217, 184, 113, .8); }
+:root[data-theme="dark"] .nav-item[aria-current="page"] .ic { color: var(--sig-gold); }
+
+/* ---------- headings: champagne metal ---------- */
+:root[data-theme="dark"] .page-h h1 { background: linear-gradient(90deg, var(--sig-white) 0%, var(--sig-gold-hi) 55%, var(--sig-gold) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
+:root[data-theme="dark"] .eyebrow { color: var(--sig-gold); letter-spacing: .14em; }
+
+/* ---------- buttons: gold primary, tactile press, cyan for technical ghosts ---------- */
+.btn { transition: transform var(--sig-t-fast) var(--sig-ease), box-shadow var(--sig-t) var(--sig-ease), background var(--sig-t) var(--sig-ease), border-color var(--sig-t) var(--sig-ease), color var(--sig-t) var(--sig-ease); }
+.btn:active:not(:disabled) { transform: translateY(1px) scale(.985); }
+:root[data-theme="dark"] .btn.primary { background: linear-gradient(180deg, #E8CF94, #C9A45A); color: #17120A; border-color: rgba(241, 220, 167, .6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45), 0 8px 24px -10px rgba(217, 184, 113, .8); }
+:root[data-theme="dark"] .btn.primary:hover:not(:disabled) { background: linear-gradient(180deg, #F1DCA7, #D3AF66); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55), 0 10px 32px -8px rgba(217, 184, 113, .95); }
+:root[data-theme="dark"] .btn.ghost:hover:not(:disabled), :root[data-theme="dark"] .icon-btn:hover:not(:disabled) { border-color: rgba(79, 227, 255, .35); box-shadow: var(--sig-edge-cyan); color: var(--sig-ice); }
+:root[data-theme="dark"] .btn.danger { box-shadow: 0 6px 22px -10px rgba(255, 59, 92, .8); }
+
+/* ---------- focus: always visible, gold ---------- */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* ---------- inputs & segmented controls ---------- */
+:root[data-theme="dark"] .input, :root[data-theme="dark"] .select, :root[data-theme="dark"] .textarea { background: rgba(5, 7, 11, .6); border-color: rgba(201, 209, 220, .12); transition: border-color var(--sig-t) var(--sig-ease), box-shadow var(--sig-t) var(--sig-ease); }
+:root[data-theme="dark"] .input:focus, :root[data-theme="dark"] .select:focus, :root[data-theme="dark"] .textarea:focus { border-color: var(--sig-gold-line); box-shadow: 0 0 0 3px rgba(217, 184, 113, .14); }
+:root[data-theme="dark"] .seg button[aria-pressed="true"] { background: rgba(217, 184, 113, .14); color: var(--sig-gold-hi); box-shadow: inset 0 0 0 1px rgba(217, 184, 113, .4); }
+
+/* ---------- meaning colours: crimson = needs attention, gold = brand, cyan = technical ---------- */
+.tier-likely { color: var(--sig-crimson); background: var(--sig-crimson-soft); box-shadow: 0 0 12px -4px rgba(255, 59, 92, .75); }
+.sum-row.t-bad .sum-st { color: var(--sig-crimson); background: var(--sig-crimson-soft); }
+.sum-row.t-bad { border-color: rgba(255, 59, 92, .28); box-shadow: 0 0 22px -12px rgba(255, 59, 92, .8); }
+.snd-toggle[aria-pressed="true"] { color: var(--sig-gold); filter: drop-shadow(0 0 6px rgba(217, 184, 113, .8)); }
+:root[data-theme="dark"] .guide-tab.on { box-shadow: var(--sig-edge-gold); }
+
+/* ---------- inspection viewer: evidence first ---------- */
+.vw-stage, .av-stage { background: #000; }               /* neutral backing; no grid or glow on the photo */
+:root[data-theme="dark"] .aero-viewer, :root[data-theme="dark"] .av { border-color: rgba(201, 209, 220, .10); }
+/* existing convention kept: AI proposal = solid, engineer-drawn = dashed, rejected = dotted/faded, confirmed = filled */
+.av-box.ai.dec-confirmed { box-shadow: 0 0 0 calc(1px / var(--z, 1)) #fff, 0 0 calc(14px / var(--z, 1)) color-mix(in srgb, var(--c) 55%, transparent); }
+
+/* ---------- entrance: panels rise once, staggered; never loop ---------- */
+@keyframes sig-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.main .page > .card, .main .page .grid > .card, .main .page-h { animation: sig-rise var(--sig-t-slow) var(--sig-ease-out) both; }
+.main .page .grid > .card:nth-child(2) { animation-delay: 40ms; } .main .page .grid > .card:nth-child(3) { animation-delay: 80ms; } .main .page .grid > .card:nth-child(n+4) { animation-delay: 120ms; }
+
+/* ---------- dialogs & drawers ---------- */
+@keyframes sig-pop { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: none; } }
+.modal, .dialog, .drawer { animation: sig-pop var(--sig-t) var(--sig-ease-out) both; }
+:root[data-theme="dark"] .modal, :root[data-theme="dark"] .dialog { border-color: rgba(217, 184, 113, .22); box-shadow: 0 40px 120px -40px rgba(0, 0, 0, .95), 0 0 0 1px rgba(217, 184, 113, .10); }
+
+/* ---------- intro: champagne reveal + crimson/cyan scan ---------- */
+.vti-laser { background: linear-gradient(180deg, transparent, var(--sig-crimson) 18%, #fff 50%, var(--sig-cyan) 82%, transparent); box-shadow: 0 0 18px 4px rgba(255, 59, 92, .35), 0 0 60px 18px rgba(79, 227, 255, .16); }
+.vti-hud { border-color: rgba(217, 184, 113, .30); color: var(--sig-gold-hi); box-shadow: 0 0 30px -12px rgba(217, 184, 113, .7); }
+.vti-hud-h { color: var(--sig-gold); } .vti-hud-h .dot { background: var(--sig-crimson); box-shadow: 0 0 10px var(--sig-crimson); }
+.vti-goldsweep { position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(241, 220, 167, .0) 40%, rgba(241, 220, 167, .22) 50%, rgba(241, 220, 167, 0) 60%, transparent 65%) 0 0 / 300% 100% no-repeat; }
+.vti.is-playing .vti-goldsweep { animation: vti-gold 1.8s var(--sig-ease) .15s 1 both; }
+@keyframes vti-gold { 0% { opacity: 0; background-position: 100% 0; } 20% { opacity: 1; } 100% { opacity: 0; background-position: 0 0; } }
+.vti-desc { display: block; margin-top: 6px; font: 600 12px/1.2 var(--font-mono, ui-monospace); letter-spacing: .32em; text-transform: uppercase; color: var(--sig-gold); }
+
+/* ---------- 3D stage controls (existing .ac3d-btn; only the accent changes) ---------- */
+:root[data-theme="dark"] .ac3d-btn:hover { border-color: var(--sig-gold-line); color: var(--sig-gold-hi); box-shadow: var(--sig-edge-gold); }
+:root[data-theme="dark"] .ac3d-btn[aria-pressed="true"] { color: var(--sig-gold-hi); border-color: var(--sig-gold-line); }
+
+/* ---------- light theme keeps contrast (gold darkened for text) ---------- */
+:root[data-theme="light"] { --accent: #8A6A1F; --accent-hover: #6F5418; --accent-soft: rgba(138, 106, 31, .10); --accent-line: rgba(138, 106, 31, .35); --accent-fg: #fff; --focus: #8A6A1F; }
+
+/* ---------- reduced motion: everything static ---------- */
+@media (prefers-reduced-motion: reduce) { .main .page > .card, .main .page .grid > .card, .main .page-h, .modal, .dialog, .drawer, .vti-goldsweep { animation: none !important; } .btn:active { transform: none; } }
+:root[data-reduce-motion] .main .page > .card, :root[data-reduce-motion] .main .page .grid > .card, :root[data-reduce-motion] .main .page-h { animation: none !important; }
+
+/* intro 3D stage: soft edges instead of a hard canvas cut */
+.vti-stage .ac3d-view { -webkit-mask-image: radial-gradient(120% 95% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(120% 95% at 50% 50%, #000 62%, transparent 100%); }
+.vti-hud { left: clamp(56px, 5%, 96px); bottom: 6%; }

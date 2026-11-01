@@ -1,0 +1,103 @@
+/* ==========================================================================
+   styles/tokens.css — Visiontra design tokens
+   Concept: aerospace inspection console at night. Midnight-navy surfaces,
+   electric-cyan primary, refined-violet secondary, amber for attention, data
+   set in mono. Dark is the primary theme; light is a daylight variant.
+   (Phase 1: the former metallic-gold primary was re-tuned to cyan; token
+   names such as --gold-* are kept for compatibility and now hold cyan values.
+   styles/aero.css adds the aerospace tokens and defect-category colours.)
+   ========================================================================== */
+:root {
+  /* ---- Visiontra premium palette ----
+     Hierarchy: ~70% dark surfaces · 15% neutrals · 7% gold · 4% cyan · 2% violet/green/magenta.
+     Category meaning: gold = primary/premium · cyan = vision & live processing · azure = data &
+     infrastructure · violet = models & AI · emerald = success/healthy · magenta = experiments.   */
+  --background-0: #060A14; --background-1: #080D18; --background-2: #0B1120; --background-3: #0D1424;
+  --surface-1: #0E1628; --surface-2: #121C30; --surface-3: #18243B;
+  --text-primary: #F1F5FC; --text-secondary: #A0ADC2; --text-muted: #74839B; --text-disabled: #4A5870;
+  --gold-50: #E8FBFF; --gold-100: #C9F4FF; --gold-200: #8BE8FF; --gold-300: #45D9FF; --gold-400: #36B8E6; --gold-500: #2A8FD0;
+  --gold-metal: linear-gradient(135deg, #C9F4FF 0%, #45D9FF 28%, #2A8FD0 58%, #7FE3FF 82%, #C9F4FF 100%);
+  --gold-edge: linear-gradient(135deg, rgba(201, 244, 255, .9), rgba(42, 143, 208, .55) 50%, rgba(139, 232, 255, .85));
+  --accent-cyan: #5EEAD4; --accent-cyan-bright: #99F6E4; --accent-blue: #5AA9FF; --accent-violet: #8B7CFF; --accent-purple: #D878FF; --accent-magenta: #D878FF; --accent-emerald: #55D6A2;
+  --success: #55D6A2; --warning: #F2B866; --danger: #FF6D7A; --info-c: #5AA9FF;
+  --brand-gradient: linear-gradient(90deg, #8BE8FF 0%, #E4F8FF 46%, #99F6E4 100%);
+  --line-gradient: linear-gradient(90deg, #45D9FF, #5EEAD4);
+
+  /* ---- semantic aliases used by components ---- */
+  --bg: var(--background-1);
+  --bg-sunken: var(--background-0);
+  --surface: rgba(14, 22, 40, 0.78);
+  --surface-solid: var(--surface-1);
+  --surface-hover: var(--surface-3);
+  --glass: rgba(9, 14, 26, 0.74);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.11);
+  --border-gold: rgba(69, 217, 255, 0.35);
+  --border-cyan: rgba(94, 234, 212, 0.25);
+  --fg: var(--text-primary);
+  --fg-2: var(--text-secondary);
+  --fg-3: var(--text-muted);
+  --fg-4: var(--text-disabled);
+  --accent: var(--gold-300);
+  --accent-hover: var(--gold-200);
+  --accent-soft: rgba(69, 217, 255, 0.10);
+  --accent-fg: #03131C;
+  --accent-line: rgba(69, 217, 255, 0.35);
+  --violet: var(--accent-violet);
+  --ok: var(--success); --ok-soft: rgba(85, 214, 162, 0.12);
+  --warn: var(--warning); --warn-soft: rgba(242, 184, 102, 0.12);
+  --bad: var(--danger); --bad-soft: rgba(255, 109, 122, 0.12);
+  --info: var(--info-c); --info-soft: rgba(90, 169, 255, 0.12);
+  --overlay: rgba(2, 4, 8, 0.72);
+  --chart-1: #45D9FF; --chart-2: #5EEAD4; --chart-3: #8B7CFF; --chart-4: #55D6A2; --chart-5: #5AA9FF; --chart-6: #D878FF;
+  --grid: rgba(255, 255, 255, 0.05);
+  --focus: #8BE8FF;
+  --glow: 0 0 0 1px rgba(69, 217, 255, 0.22), 0 10px 36px -16px rgba(69, 217, 255, 0.35);
+  --glow-cyan: 0 0 0 1px rgba(94, 234, 212, 0.2), 0 10px 36px -16px rgba(94, 234, 212, 0.35);
+
+  /* ---- type: one UI family + mono for data ---- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-micro: .6875rem; --fs-xs: .75rem; --fs-sm: .8125rem; --fs-md: .875rem; --fs-lg: 1rem; --fs-card: 1.0625rem; --fs-xl: 1.375rem;
+  --fs-2xl: 2.125rem; --fs-3xl: 3.25rem; --fs-hero: clamp(2.6rem, 4.6vw, 5.1rem);
+  /* ---- spacing (4-based) ---- */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 24px; --s8: 32px; --s10: 40px; --s12: 48px; --s16: 64px; --s20: 80px; --s24: 96px;
+  /* ---- radius scale 6 / 10 / 14 / 18 / 24 ---- */
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 18px; --r-2xl: 24px; --r-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .025);
+  --shadow-2: 0 10px 30px -12px rgba(0, 0, 0, .65);
+  --shadow-3: 0 28px 70px -14px rgba(0, 0, 0, .75), 0 0 0 1px var(--border);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --t-fast: 120ms; --t-med: 220ms; --t-slow: 420ms;
+  --z-sidebar: 70; --z-header: 40; --z-popover: 60; --z-overlay: 100; --z-toast: 110; --z-tooltip: 120; --z-intro: 200;
+  --sidebar-w: 272px; --sidebar-rail: 76px; --header-h: 60px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #EEF2F6; --bg-sunken: #E3E9F0; --surface: rgba(255, 255, 255, 0.86); --surface-solid: #FFFFFF; --surface-2: #F6F8FB; --surface-hover: #EDF2F7;
+    --glass: rgba(255, 255, 255, 0.72); --border: rgba(20, 40, 64, 0.10); --border-strong: rgba(20, 40, 64, 0.2);
+    --fg: #0D1622; --fg-2: #33465B; --fg-3: #5E7186; --fg-4: #8C9BAC;
+    --accent: #0B6FA4; --accent-hover: #095A86; --accent-soft: rgba(11, 111, 164, 0.10); --accent-fg: #FFFFFF; --accent-line: rgba(11, 111, 164, .35);
+    --ok: #117049; --ok-soft: rgba(17, 112, 73, .10); --warn: #8F5600; --warn-soft: rgba(143, 86, 0, .10); --bad: #C2341F; --bad-soft: rgba(194, 52, 31, .09); --info: #3355C6; --info-soft: rgba(51, 85, 198, .09);
+    --overlay: rgba(10, 20, 32, .38); --grid: rgba(20, 40, 64, .07); --focus: #2A6FDB;
+    --chart-1: #0B6FA4; --chart-2: #0F8C8C; --chart-3: #C07A00; --chart-4: #B24D86; --chart-5: #3D8F3A; --chart-6: #6E57D6;
+    --shadow-1: 0 1px 2px rgba(10, 30, 50, .08); --shadow-2: 0 6px 20px -8px rgba(10, 30, 50, .18); --shadow-3: 0 24px 60px -16px rgba(10, 30, 50, .28), 0 0 0 1px var(--border);
+    --glow: 0 0 0 1px rgba(10, 138, 124, .25), 0 8px 30px -14px rgba(10, 138, 124, .45);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #EEF2F6; --bg-sunken: #E3E9F0; --surface: rgba(255, 255, 255, 0.86); --surface-solid: #FFFFFF; --surface-2: #F6F8FB; --surface-hover: #EDF2F7;
+  --glass: rgba(255, 255, 255, 0.72); --border: rgba(20, 40, 64, 0.10); --border-strong: rgba(20, 40, 64, 0.2);
+  --fg: #0D1622; --fg-2: #33465B; --fg-3: #5E7186; --fg-4: #8C9BAC;
+  --accent: #0B6FA4; --accent-hover: #095A86; --accent-soft: rgba(11, 111, 164, 0.10); --accent-fg: #FFFFFF; --accent-line: rgba(11, 111, 164, .35);
+  --ok: #117049; --ok-soft: rgba(17, 112, 73, .10); --warn: #8F5600; --warn-soft: rgba(143, 86, 0, .10); --bad: #C2341F; --bad-soft: rgba(194, 52, 31, .09); --info: #3355C6; --info-soft: rgba(51, 85, 198, .09);
+  --overlay: rgba(10, 20, 32, .38); --grid: rgba(20, 40, 64, .07); --focus: #2A6FDB;
+  --chart-1: #0B6FA4; --chart-2: #0F8C8C; --chart-3: #C07A00; --chart-4: #B24D86; --chart-5: #3D8F3A; --chart-6: #6E57D6;
+  --shadow-1: 0 1px 2px rgba(10, 30, 50, .08); --shadow-2: 0 6px 20px -8px rgba(10, 30, 50, .18); --shadow-3: 0 24px 60px -16px rgba(10, 30, 50, .28), 0 0 0 1px var(--border);
+  --glow: 0 0 0 1px rgba(10, 138, 124, .25), 0 8px 30px -14px rgba(10, 138, 124, .45);
+  color-scheme: light;
+}
+:root[data-theme="dark"] { color-scheme: dark; }

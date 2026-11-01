@@ -1,0 +1,304 @@
+{
+ "schema": "visiontra.detection_evaluation/1",
+ "experiment_id": "VT-EXP-003",
+ "run_id": "VT-EXP-003-20261011T114002Z",
+ "split": "test",
+ "subset": "eval_representatives",
+ "evaluated_at": "2026-10-11T16:50:11Z",
+ "model_checkpoint": {
+  "checkpoint": "checkpoints/best.pt",
+  "sha256": "95b0cf800ff42584fa29b1432785101df5efbe0d9add1f3e002195971c87747e",
+  "epoch": 19
+ },
+ "classes": [
+  "dent"
+ ],
+ "split_digest": "9b8e16cea46a7f45f307e805bab0aa44813d236cc08c15b3f4184b05daf9ebb1",
+ "data": {
+  "images": 331,
+  "assets": 331,
+  "photo_groups": 331,
+  "images_with_target": 163,
+  "images_without_target": 168,
+  "unlabelled_images": 0,
+  "instances": {
+   "dent": 237
+  },
+  "images_containing": {
+   "dent": 163
+  },
+  "dropped_source_instances": {
+   "paint-off": 50,
+   "missing-head": 61,
+   "crack": 153,
+   "scratch": 6
+  },
+  "split_digest": "9b8e16cea46a7f45f307e805bab0aa44813d236cc08c15b3f4184b05daf9ebb1"
+ },
+ "eval_config": {
+  "nms_iou": 0.65,
+  "score_floor": 0.001,
+  "max_det": 100,
+  "match_iou": 0.5,
+  "report_threshold": 0.25,
+  "input_size": [
+   416,
+   416
+  ],
+  "ap_reference": "pycocotools COCOeval (bbox, maxDets 100, IoU 0.50 and 0.50:0.95)"
+ },
+ "environment": {
+  "python": "3.13.16",
+  "torch": "2.14.1+cu130",
+  "torchvision": "0.29.1+cu130",
+  "numpy": "2.5.3",
+  "pillow": "12.3.0",
+  "pycocotools": "2.0.11",
+  "yolox": "vendored 0.3.0 @ 41977848 (model code only)",
+  "platform": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39",
+  "cpu": "x86_64",
+  "cpu_count": 2,
+  "device": "cpu",
+  "cuda": null,
+  "torch_threads": 2,
+  "source": {
+   "commit": "76ecac8f8abe2a3993355394d60f826ab937fa05",
+   "ml_code_dirty": false
+  }
+ },
+ "inference_seconds": 32.7,
+ "inference_ms_per_image": 98.9,
+ "thresholds_from": "valid-20261011T164928Z",
+ "metrics": {
+  "per_class_ap": {
+   "dent": {
+    "AP50": 0.24744239076886398,
+    "AP50_95": 0.10050465858551447,
+    "gt_instances": 237,
+    "AP_small": null,
+    "AP_medium": 0.07560823393531083,
+    "AP_large": 0.10911985115538107
+   }
+  },
+  "per_class_at_threshold": {
+   "dent": {
+    "tp": 74,
+    "fp": 234,
+    "fn": 163,
+    "precision": 0.24025974025974026,
+    "recall": 0.31223628691983124,
+    "f1": 0.27155963302752295,
+    "score_threshold": 0.05,
+    "gt_instances": 237
+   }
+  },
+  "AP50": 0.24744239076886398,
+  "AP50_95": 0.10050465858551447,
+  "images": 331,
+  "images_with_gt": 163,
+  "predictions": 3632
+ },
+ "metrics_at_review_threshold": {
+  "dent": {
+   "tp": 68,
+   "fp": 191,
+   "fn": 169,
+   "precision": 0.2625482625482625,
+   "recall": 0.2869198312236287,
+   "f1": 0.27419354838709675,
+   "score_threshold": 0.075,
+   "gt_instances": 237
+  }
+ },
+ "by_session": {
+  "VT-DS-001/ih-phone-2023-05-12": {
+   "images": 331,
+   "AP50": 0.24744239076886398,
+   "AP50_95": 0.10050465858551447,
+   "at_threshold": {
+    "dent": {
+     "tp": 74,
+     "fp": 234,
+     "fn": 163,
+     "precision": 0.24025974025974026,
+     "recall": 0.31223628691983124,
+     "f1": 0.27155963302752295,
+     "score_threshold": 0.05,
+     "gt_instances": 237
+    }
+   }
+  }
+ },
+ "error_analysis": {
+  "fp_kinds": {
+   "localisation (IoU 0.1\u20130.5 with a labelled dent)": 105,
+   "no overlap with a labelled dent": 94,
+   "on image without labelled dent": 35
+  },
+  "fn_kinds": {
+   "detected only below threshold": 76,
+   "poorly localised": 76,
+   "not detected at all": 11
+  },
+  "recall_by_size": {
+   "tiny (<5% of side)": {
+    "gt": 0,
+    "tp": 0,
+    "recall": null
+   },
+   "small (5\u201310%)": {
+    "gt": 4,
+    "tp": 0,
+    "recall": 0.0
+   },
+   "medium (10\u201320%)": {
+    "gt": 67,
+    "tp": 20,
+    "recall": 0.29850746268656714
+   },
+   "large (\u226520%)": {
+    "gt": 166,
+    "tp": 54,
+    "recall": 0.3253012048192771
+   }
+  },
+  "images_without_labelled_target": 168,
+  "fp_per_image_without_labelled_target": 0.20833333333333334
+ },
+ "diagnostics": [
+  {
+   "file": "5670ba065df6.jpg",
+   "image": "VT-DS-001:test/images/IMG_20230512_123956_jpg.rf.db8df1502df44ac727ed1686a9e9362a.jpg",
+   "errors": 7
+  },
+  {
+   "file": "3287475e5def.jpg",
+   "image": "VT-DS-001:train/images/IMG_20230512_123804_jpg.rf.123322120f2174afaa3b0e436d46f7cf.jpg",
+   "errors": 7
+  },
+  {
+   "file": "739c0b82dbbe.jpg",
+   "image": "VT-DS-001:train/images/IMG_20230512_130630_jpg.rf.1fe0e31ac654ab314c659b67f61d3dfb.jpg",
+   "errors": 7
+  },
+  {
+   "file": "5ddd4df8015a.jpg",
+   "image": "VT-DS-001:train/images/IMG_20230512_123753_jpg.rf.a1148381f4b7d933909bbbabd652a7c0.jpg",
+   "errors": 6
+  },
+  {
+   "file": "5281f29c0ed4.jpg",
+   "image": "VT-DS-001:train/images/IMG_20230512_130149_jpg.rf.2ddae8bf24497716f71502df6bbcf925.jpg",
+   "errors": 6
+  },
+  {
+   "file": "1214466947f0.jpg",
+   "image": "VT-DS-001:train/images/IMG_20230512_130628_jpg.rf.1166dc0dc579abff52ee949ba88db659.jpg",
+   "errors": 6
+  },
+  {
+   "file": "3d6b5234170a.jpg",
+   "image": "VT-DS-001:train/images/IMG_20230512_130635_jpg.rf.2bb60b6ae659d9e4aca43f70a06cb21d.jpg",
+   "errors": 6
+  },
+  {
+   "file": "9e2422855428.jpg",
+   "image": "VT-DS-001:train/images/IMG_20230512_130724_jpg.rf.cf8b44e78d2bdef94b0ff5ad692c1acf.jpg",
+   "errors": 6
+  },
+  {
+   "file": "d62addaf77d8.jpg",
+   "image": "VT-DS-001:train/images/IMG_20230512_131124_jpg.rf.5a66a9750a2c4d2c8f73d8abf8519f91.jpg",
+   "errors": 6
+  },
+  {
+   "file": "7b8dc8da6356.jpg",
+   "image": "VT-DS-001:valid/images/IMG_20230512_131039_jpg.rf.f6a7b487255d9af865fdba60f87af006.jpg",
+   "errors": 6
+  },
+  {
+   "file": "744eb6910338.jpg",
+   "image": "VT-DS-001:test/images/IMG_20230512_124115_jpg.rf.c5e1abf3ba8de540cb4681b77d439d2e.jpg",
+   "errors": 5
+  },
+  {
+   "file": "a72187e6468e.jpg",
+   "image": "VT-DS-001:test/images/IMG_20230512_131028_jpg.rf.23db12d04067a53e9c42a764517bac37.jpg",
+   "errors": 5
+  }
+ ],
+ "robustness": {
+  "darker_40pct": {
+   "AP50": 0.26759435277626453,
+   "AP50_95": 0.10533333299681177,
+   "at_threshold": {
+    "dent": {
+     "tp": 86,
+     "fp": 236,
+     "fn": 151,
+     "precision": 0.2670807453416149,
+     "recall": 0.3628691983122363,
+     "f1": 0.30769230769230776,
+     "score_threshold": 0.05,
+     "gt_instances": 237
+    }
+   }
+  },
+  "brighter_40pct": {
+   "AP50": 0.18326628204495515,
+   "AP50_95": 0.06653443660941821,
+   "at_threshold": {
+    "dent": {
+     "tp": 57,
+     "fp": 201,
+     "fn": 180,
+     "precision": 0.22093023255813954,
+     "recall": 0.24050632911392406,
+     "f1": 0.23030303030303031,
+     "score_threshold": 0.05,
+     "gt_instances": 237
+    }
+   }
+  },
+  "low_contrast_50pct": {
+   "AP50": 0.2635978991432047,
+   "AP50_95": 0.09940968294070063,
+   "at_threshold": {
+    "dent": {
+     "tp": 83,
+     "fp": 245,
+     "fn": 154,
+     "precision": 0.2530487804878049,
+     "recall": 0.350210970464135,
+     "f1": 0.29380530973451324,
+     "score_threshold": 0.05,
+     "gt_instances": 237
+    }
+   }
+  },
+  "half_resolution": {
+   "AP50": 0.24452249682891666,
+   "AP50_95": 0.09667702401935709,
+   "at_threshold": {
+    "dent": {
+     "tp": 73,
+     "fp": 219,
+     "fn": 164,
+     "precision": 0.25,
+     "recall": 0.3080168776371308,
+     "f1": 0.27599243856332706,
+     "score_threshold": 0.05,
+     "gt_instances": 237
+    }
+   }
+  }
+ },
+ "probes": {
+  "VT-DS-002": {
+   "images": 110,
+   "images_with_detection": 11,
+   "detections": 15,
+   "note": "VT-DS-002 has no 'dent' annotations; these detections cannot be scored as true or false positives."
+  }
+ }
+}

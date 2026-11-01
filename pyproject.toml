@@ -13,8 +13,15 @@ visentra_api = "apps/api/visentra_api"
 visentra_ml = "ml/visentra_ml"
 
 [tool.setuptools]
-packages = ["visentra_api", "visentra_api.routers", "visentra_api.services", "visentra_ml", "visentra_ml.detection", "visentra_ml.detection.third_party", "visentra_ml.detection.third_party.yolox"]
+packages = ["visentra_api", "visentra_api.routers", "visentra_api.services", "visentra_api.inspection", "visentra_api.reports", "visentra_ml", "visentra_ml.detection", "visentra_ml.detection.third_party", "visentra_ml.detection.third_party.yolox"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+
+# apps/api/visentra_api/main.py exports the existing FastAPI app.
+[tool.vercel]
+entrypoint = "apps.api.visentra_api.main:app"
+
+[tool.vercel.scripts]
+build = "python apps/web/build.py"

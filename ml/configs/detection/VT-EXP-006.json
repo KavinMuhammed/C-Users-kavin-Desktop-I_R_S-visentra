@@ -1,0 +1,121 @@
+{
+  "schema": "visiontra.detection_experiment/1",
+  "experiment_id": "VT-EXP-006",
+  "description": "GPU fine-tune for small defects: YOLOX-Tiny at 640 px (VT-EXP-005 used 416 px, where hairline cracks shrink below a few pixels), initialised from VT-DET-0002 (VT-EXP-005 best EMA weights), same CMAP-001 v2 classes, splits and background negatives. Prepared 2026-10-18 for a CUDA machine (RTX 4070 laptop); the held-out test split is scored once, after thresholds are frozen on valid.",
+  "dataset": {
+    "prep_id": "VT-PREP-001",
+    "datasets": [
+      "VT-DS-001",
+      "VT-DS-002"
+    ],
+    "splits": {
+      "train": "datasets/splits/VT-PREP-001/train.csv",
+      "valid": "datasets/splits/VT-PREP-001/valid.csv",
+      "test": "datasets/splits/VT-PREP-001/test.csv"
+    },
+    "class_mapping": "datasets/config/class_mapping.json",
+    "mapping_statuses_allowed": [
+      "ACCEPTED",
+      "PROVISIONAL_ACCEPTED"
+    ],
+    "target_classes": [
+      "crack",
+      "dent",
+      "corrosion"
+    ],
+    "train_sampling": "one_file_per_asset_per_epoch",
+    "valid_subset": "one_file_per_asset",
+    "test_subset": "eval_representatives",
+    "background": {
+      "manifests": [
+        "datasets/negatives/VT-NEG-001/manifest.csv",
+        "datasets/negatives/VT-NEG-002/manifest.csv"
+      ],
+      "per_epoch": 420,
+      "note": "Background-only images (no boxes): teach the detector to stay silent on non-defect content. Ambiguous aircraft classes are skipped."
+    }
+  },
+  "model": {
+    "family": "YOLOX",
+    "variant": "tiny",
+    "input_size": [
+      640,
+      640
+    ],
+    "preprocessing": {
+      "mode": "letterbox",
+      "fill": 114,
+      "colour_order": "BGR",
+      "scale": "0-255, no mean/std normalisation (YOLOX convention)"
+    },
+    "pretrained": {
+      "path": "models/detection/VT-DET-0002/model.pt",
+      "sha256": "913906b678e9f26cb3d48a21d315cd6466a715a4433c12c6ebe48cd28af33dad",
+      "source_url": "models/detection/VT-DET-0002 (VT-EXP-005 best EMA, epoch 27)",
+      "licence": "Apache-2.0 model code; fine-tuned on VT-DS-001/002 (CC BY 4.0)",
+      "trained_on": "VT-EXP-005"
+    }
+  },
+  "train": {
+    "epochs": 40,
+    "batch_size": 16,
+    "seed": 20261011,
+    "device": "auto",
+    "num_threads": 4,
+    "optimizer": {
+      "name": "sgd",
+      "lr_per_img": 0.00015625,
+      "momentum": 0.9,
+      "weight_decay": 0.0005
+    },
+    "scheduler": {
+      "name": "cosine",
+      "warmup_epochs": 1,
+      "min_lr_ratio": 0.05
+    },
+    "ema": true,
+    "eval_every": 1,
+    "selection_split": "valid",
+    "early_stopping": {
+      "metric": "AP50_95",
+      "patience": 8
+    },
+    "checkpoint": {
+      "last": "every epoch (resume state)",
+      "best": "EMA weights of the best validation epoch"
+    },
+    "grad_clip_norm": 10
+  },
+  "augment": {
+    "hflip": 0.5,
+    "vflip": 0.0,
+    "scale": [
+      0.8,
+      1.2
+    ],
+    "translate": 0.1,
+    "hsv": {
+      "h": 0.0,
+      "s": 0.2,
+      "v": 0.25
+    },
+    "mosaic": 0,
+    "mixup": 0,
+    "note": "No vertical flip: the training files already include Roboflow's rotation augmentations; adding vertical flips would make ceiling/floor lighting cues inconsistent without evidence they help. No hue shift, mosaic or mixup (AUG-02). Phase 13: photometric robustness (blur, noise, JPEG, greyscale, contrast) for phone/drone/AI-generated images.",
+    "photometric": {
+      "blur": 0.2,
+      "noise": 0.2,
+      "jpeg": 0.3,
+      "gray": 0.1,
+      "contrast": 0.3
+    }
+  },
+  "eval": {
+    "nms_iou": 0.65,
+    "score_floor": 0.001,
+    "max_det": 100,
+    "match_iou": 0.5,
+    "report_threshold": 0.25
+  },
+  "output_dir": "experiments/VT-EXP-006"
+}

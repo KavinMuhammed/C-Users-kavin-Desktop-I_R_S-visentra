@@ -1,0 +1,360 @@
+{
+ "schema": "visiontra.inference_fixture/1",
+ "model_id": "VT-DET-0001",
+ "model_sha256": "69114ceab4c23f3d8d80d18468636f3e2774c785b7883102dfcc8eaf0fba2d3e",
+ "metrics_computed": false,
+ "note": "Integration fixture: loading and deterministic inference only. Synthetic images + validation-split images; no held-out test image. Not an evaluation.",
+ "validation": [
+  {
+   "ref": "valid-1",
+   "file_id": "VT-DS-001:test/images/000616_NewConstruction_jpg.rf.e2fb971532eaffb92b62cb57b8ff4a79.jpg",
+   "rel_path": "datasets/raw/VT-DS-001/test/images/000616_NewConstruction_jpg.rf.e2fb971532eaffb92b62cb57b8ff4a79.jpg",
+   "sha256": "6ff583fd2e4d1fa0359bb7f93f4b323dee41c17fc55bc78d7d7c83bf4d8ac114",
+   "labelled_dent": true
+  },
+  {
+   "ref": "valid-2",
+   "file_id": "VT-DS-001:test/images/136_1_JPG_jpg.rf.c213938230601121a876491bfba9b018.jpg",
+   "rel_path": "datasets/raw/VT-DS-001/test/images/136_1_JPG_jpg.rf.c213938230601121a876491bfba9b018.jpg",
+   "sha256": "ac54e95275dcda03ff7752bc0d4dc0e107d14395cfc794f394c163fc205fa304",
+   "labelled_dent": true
+  },
+  {
+   "ref": "valid-3",
+   "file_id": "VT-DS-001:test/images/101_4_JPG_jpg.rf.7b40e962b027cf05e478faf07cc49251.jpg",
+   "rel_path": "datasets/raw/VT-DS-001/test/images/101_4_JPG_jpg.rf.7b40e962b027cf05e478faf07cc49251.jpg",
+   "sha256": "fd47b906d9085bd1a0bfcae85620c7139220bf5108c48c0f536c6706002d05e4",
+   "labelled_dent": false
+  },
+  {
+   "ref": "valid-4",
+   "file_id": "VT-DS-001:test/images/102_11_JPG_jpg.rf.985a543c7b395a91139a569c16b1394a.jpg",
+   "rel_path": "datasets/raw/VT-DS-001/test/images/102_11_JPG_jpg.rf.985a543c7b395a91139a569c16b1394a.jpg",
+   "sha256": "8c2b117dc329b33a39631be2225bd193986db3730fc75039c0b82add524b06da",
+   "labelled_dent": false
+  }
+ ],
+ "recorded_with": {
+  "python": "3.13.16",
+  "torch": "2.14.1+cu130",
+  "platform": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39"
+ },
+ "results": {
+  "synthetic-gradient": {
+   "sha256": "ae28a6a0acfd10334c90627bbd86ae659d839f2f2125b3d3ac1ebe5d481c2f73",
+   "status": "no_detections",
+   "width": 800,
+   "height": 600,
+   "detections": [],
+   "raw_top": [
+    {
+     "score": 0.0020158549305051565,
+     "box": [
+      673.7773014948918,
+      275.90716435359076,
+      722.8408813476562,
+      361.5320352407602
+     ]
+    },
+    {
+     "score": 0.00196159933693707,
+     "box": [
+      658.3007225623497,
+      277.8044187105619,
+      707.7387296236478,
+      360.6721437894381
+     ]
+    },
+    {
+     "score": 0.0019299921113997698,
+     "box": [
+      690.3116666353666,
+      274.61022597092847,
+      737.8755422738882,
+      361.46501394418567
+     ]
+    },
+    {
+     "score": 0.0018437517574056983,
+     "box": [
+      672.8197537935697,
+      240.46663137582632,
+      724.0700354942909,
+      334.97094374436597
+     ]
+    },
+    {
+     "score": 0.001838795724324882,
+     "box": [
+      689.5460862379807,
+      239.61665813739484,
+      739.0558096078726,
+      334.96395991398737
+     ]
+    }
+   ],
+   "raw_count": 100,
+   "raw_sha256": "67ab859716dac7bc849534929979dc653d5ea55d9cf4e946df05c4b86ecf14fb",
+   "content_sha256": "cbf74049e65a9d8ccab6ab7a7206c82ebdb6172dc4a59c9f41bd163fdb6f19b0"
+  },
+  "synthetic-ellipse": {
+   "sha256": "3fde8f1cd658d18eacb3be0d7084d2ae3673290d2b94fed90ef94ad57f949a86",
+   "status": "no_detections",
+   "width": 800,
+   "height": 600,
+   "detections": [],
+   "raw_top": [],
+   "raw_count": 0,
+   "raw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+   "content_sha256": "906baf43501f022732f4615a9d80a8be2f9da61d3f0d183000a9f841881bc683"
+  },
+  "synthetic-exif6": {
+   "sha256": "27e1dd4e007f7d729571b58a8d1a47fcf1e9e01561216fd7feb5730e1a83faac",
+   "status": "no_detections",
+   "width": 480,
+   "height": 640,
+   "detections": [],
+   "raw_top": [
+    {
+     "score": 0.0010690945200622082,
+     "box": [
+      287.22937950721155,
+      504.0818434495192,
+      326.6009990985577,
+      563.2711087740385
+     ]
+    },
+    {
+     "score": 0.0010648289462551475,
+     "box": [
+      249.8094294621394,
+      503.9652663010817,
+      289.6240234375,
+      563.0425086388221
+     ]
+    },
+    {
+     "score": 0.0010601561516523361,
+     "box": [
+      274.7130643404447,
+      504.0814208984375,
+      313.97742638221155,
+      563.0322735126201
+     ]
+    },
+    {
+     "score": 0.0010568981524556875,
+     "box": [
+      262.5736647385817,
+      504.1470571664663,
+      301.8554217998798,
+      562.9873891977163
+     ]
+    },
+    {
+     "score": 0.0010285753523930907,
+     "box": [
+      299.1429490309495,
+      504.5329402043269,
+      338.10265174278845,
+      563.4049166165865
+     ]
+    }
+   ],
+   "raw_count": 6,
+   "raw_sha256": "3d7a15e3c69d65396d66da66df6caa19d222179c4c5d06aab1a5803e66821839",
+   "content_sha256": "d898545094043cfcad5528453a76d077a8807db36956fb6fcadcc6b94adf3833"
+  },
+  "valid-1": {
+   "sha256": "6ff583fd2e4d1fa0359bb7f93f4b323dee41c17fc55bc78d7d7c83bf4d8ac114",
+   "status": "no_detections",
+   "width": 640,
+   "height": 640,
+   "detections": [],
+   "raw_top": [
+    {
+     "score": 0.030731618404388428,
+     "box": [
+      392.7401968149038,
+      43.82558969350961,
+      500.55917593149036,
+      88.76231266902043
+     ]
+    },
+    {
+     "score": 0.011297357268631458,
+     "box": [
+      0,
+      95.26628934420071,
+      192.08946814903845,
+      323.6083045372596
+     ]
+    },
+    {
+     "score": 0.008477223105728626,
+     "box": [
+      206.93011944110577,
+      102.5042020357572,
+      329.6019099308894,
+      168.26387845552884
+     ]
+    },
+    {
+     "score": 0.0052328030578792095,
+     "box": [
+      206.23694786658652,
+      408.7138014573317,
+      354.16151780348554,
+      545.714346078726
+     ]
+    },
+    {
+     "score": 0.003962978720664978,
+     "box": [
+      313.08732252854566,
+      148.21986271784854,
+      468.9071890024038,
+      293.37770902193506
+     ]
+    }
+   ],
+   "raw_count": 27,
+   "raw_sha256": "a2a82d43420a687328f0b3affe293ffe5e512770d9d641b513883aea0bcf3d06"
+  },
+  "valid-2": {
+   "sha256": "ac54e95275dcda03ff7752bc0d4dc0e107d14395cfc794f394c163fc205fa304",
+   "status": "no_detections",
+   "width": 640,
+   "height": 640,
+   "detections": [],
+   "raw_top": [
+    {
+     "score": 0.04433473199605942,
+     "box": [
+      242.92736346905048,
+      289.6382023737981,
+      381.8547879732572,
+      439.70365084134613
+     ]
+    },
+    {
+     "score": 0.03614345192909241,
+     "box": [
+      261.1858896108774,
+      289.4176307091346,
+      362.0384098933293,
+      410.3154109074519
+     ]
+    },
+    {
+     "score": 0.0333416610956192,
+     "box": [
+      196.12125103290265,
+      247.53814697265625,
+      499.1185114933894,
+      472.7635779747596
+     ]
+    },
+    {
+     "score": 0.03308362886309624,
+     "box": [
+      274.00155874399036,
+      320.5440110426683,
+      325.9636981670673,
+      394.8530930739183
+     ]
+    },
+    {
+     "score": 0.022011257708072662,
+     "box": [
+      285.517578125,
+      314.317133976863,
+      335.4138653094952,
+      389.6170982947716
+     ]
+    }
+   ],
+   "raw_count": 30,
+   "raw_sha256": "974716ccd4a16d33a9dcbf4410dfd5aabf40557ddc8fa2b8d071e86952ecc781"
+  },
+  "valid-3": {
+   "sha256": "fd47b906d9085bd1a0bfcae85620c7139220bf5108c48c0f536c6706002d05e4",
+   "status": "no_detections",
+   "width": 640,
+   "height": 640,
+   "detections": [],
+   "raw_top": [],
+   "raw_count": 0,
+   "raw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "valid-4": {
+   "sha256": "8c2b117dc329b33a39631be2225bd193986db3730fc75039c0b82add524b06da",
+   "status": "detections",
+   "width": 640,
+   "height": 640,
+   "detections": [
+    {
+     "class": "dent",
+     "score": 0.051145,
+     "box": [
+      508.19,
+      582.18,
+      639.41,
+      640
+     ],
+     "low_confidence": true
+    }
+   ],
+   "raw_top": [
+    {
+     "score": 0.05114499107003212,
+     "box": [
+      508.19190392127405,
+      582.1786733774038,
+      639.4134521484375,
+      640
+     ]
+    },
+    {
+     "score": 0.04222119599580765,
+     "box": [
+      2.882127028245192,
+      54.110424335186295,
+      131.15077092097354,
+      198.51299579326923
+     ]
+    },
+    {
+     "score": 0.04057168960571289,
+     "box": [
+      385.6419489933894,
+      151.76409207857571,
+      497.6385498046875,
+      253.06828425480768
+     ]
+    },
+    {
+     "score": 0.030764341354370117,
+     "box": [
+      229.2919217623197,
+      273.2606858473558,
+      366.4275418795072,
+      418.98033728966345
+     ]
+    },
+    {
+     "score": 0.030470868572592735,
+     "box": [
+      398.21908804086536,
+      174.07849825345554,
+      467.2795222355769,
+      236.05710543118988
+     ]
+    }
+   ],
+   "raw_count": 29,
+   "raw_sha256": "5a6c05ceeeea92fb5c886613a74b671a4ee7eeb7faa36f2a49b40b2a65c73842"
+  }
+ },
+ "content_sha256_note": "2026-10-24 (Phase 4): content_sha256 added for the 3 synthetic images only, computed from the in-code generator (Windows, Python 3.11, Pillow 12.3.0). The recorded PNG byte sha256 values (Linux, Python 3.13) and every recorded output are unchanged. With only the byte check bypassed, all 7 images matched the recorded outputs within tolerance before this field was added, so the decoded inputs are the ones the outputs were recorded for."
+}

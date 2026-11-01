@@ -1,0 +1,165 @@
+{
+ "schema": "visiontra.experiment_run/1",
+ "experiment_id": "VT-EXP-005",
+ "run_id": "VT-EXP-005-20261017T105157Z",
+ "created_at": "2026-10-17T10:51:57Z",
+ "status": "completed",
+ "config_sha256": "b34adcee3d3f1400d3885c51a0976a617791d34f35ada9fb5f6b455e9ca99cd9",
+ "events": [
+  {
+   "at": "2026-10-17T10:51:59Z",
+   "event": "started",
+   "device": "cpu",
+   "train_images": 8435,
+   "valid_images": 886
+  },
+  {
+   "at": "2026-10-17T12:51:55Z",
+   "event": "interrupted",
+   "signal": "SIGTERM",
+   "epoch": 6,
+   "note": "resume with --resume; the partial epoch is repeated"
+  },
+  {
+   "at": "2026-10-17T15:34:26Z",
+   "event": "resumed"
+  },
+  {
+   "at": "2026-10-17T17:33:13Z",
+   "event": "resumed"
+  },
+  {
+   "at": "2026-10-17T19:33:20Z",
+   "event": "resumed"
+  },
+  {
+   "at": "2026-10-17T21:33:29Z",
+   "event": "resumed"
+  },
+  {
+   "at": "2026-10-17T23:33:25Z",
+   "event": "interrupted",
+   "signal": "SIGTERM",
+   "epoch": 28,
+   "note": "resume with --resume; the partial epoch is repeated"
+  },
+  {
+   "at": "2026-10-17T23:33:39Z",
+   "event": "resumed"
+  },
+  {
+   "at": "2026-10-18T00:11:23Z",
+   "event": "completed",
+   "best": {
+    "value": 0.08026815699577415,
+    "epoch": 27,
+    "metric": "AP50_95"
+   }
+  }
+ ],
+ "smoke": false,
+ "device": "cpu",
+ "classes": [
+  "crack",
+  "dent",
+  "corrosion"
+ ],
+ "mapping": {
+  "mapping_id": "CMAP-001",
+  "version": 2,
+  "taxonomy": "TAX-1.0",
+  "sha256": "7b2ea35e9fafceaf6b04ddc11d62a462215f4b372e8d1dce7f8c558313265146"
+ },
+ "data": {
+  "prep_id": "VT-PREP-001",
+  "datasets": [
+   "VT-DS-001",
+   "VT-DS-002"
+  ],
+  "train": {
+   "images": 8435,
+   "assets": 3655,
+   "photo_groups": 1356,
+   "images_with_target": 7424,
+   "images_without_target": 1011,
+   "unlabelled_images": 0,
+   "instances": {
+    "dent": 7528,
+    "crack": 7518,
+    "corrosion": 1443
+   },
+   "images_containing": {
+    "crack": 4470,
+    "dent": 3503,
+    "corrosion": 392
+   },
+   "dropped_source_instances": {
+    "paint-off": 561,
+    "scratch": 158,
+    "missing-head": 711,
+    "Scartch": 1248,
+    "Missing-Rivet": 887
+   },
+   "split_digest": "acd587ba1c1aa375abb9b33609b0aae4a077f5de9020bcded5985bacb9104aba"
+  },
+  "valid": {
+   "images": 886,
+   "assets": 886,
+   "photo_groups": 231,
+   "images_with_target": 794,
+   "images_without_target": 92,
+   "unlabelled_images": 0,
+   "instances": {
+    "dent": 536,
+    "crack": 921,
+    "corrosion": 321
+   },
+   "images_containing": {
+    "dent": 247,
+    "crack": 423,
+    "corrosion": 127
+   },
+   "dropped_source_instances": {
+    "paint-off": 29,
+    "missing-head": 32,
+    "scratch": 11,
+    "Missing-Rivet": 275,
+    "Scartch": 452
+   },
+   "split_digest": "bebfa32027bc2ed50cd94bb657f7ae3597d4dbabf7ae75962cd4940d11605dce"
+  },
+  "valid_subset": "one_file_per_asset",
+  "train_sampling": "one_file_per_asset_per_epoch",
+  "background": {
+   "images": 844,
+   "per_epoch": 420,
+   "manifests": [
+    "datasets/negatives/VT-NEG-001/manifest.csv",
+    "datasets/negatives/VT-NEG-002/manifest.csv"
+   ]
+  },
+  "split_files": {
+   "train": "datasets/splits/VT-PREP-001/train.csv",
+   "valid": "datasets/splits/VT-PREP-001/valid.csv",
+   "test": "datasets/splits/VT-PREP-001/test.csv"
+  }
+ },
+ "epochs_planned": 30,
+ "started_at": "2026-10-17T10:51:59Z",
+ "pretrained": {
+  "source_url": "experiments/VT-EXP-004/VT-EXP-004-20261017T064141Z (after epoch index 2, EMA)",
+  "licence": "Apache-2.0 model code; COCO-pretrained YOLOX-Tiny initialisation (Apache-2.0), fine-tuned on VT-DS-001/002 (CC BY 4.0)",
+  "sha256": "0735404277ba6dce8046fe34a182043abed57e70a3e66b1cf1118e829fd46102",
+  "loaded_tensors": 462,
+  "skipped_shape_mismatch": [],
+  "not_in_checkpoint": []
+ },
+ "epochs_completed": 30,
+ "best": {
+  "value": 0.08026815699577415,
+  "epoch": 27,
+  "metric": "AP50_95"
+ },
+ "ended_at": "2026-10-18T00:11:23Z",
+ "duration_seconds": 47965
+}

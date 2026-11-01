@@ -1,0 +1,100 @@
+{
+ "_note": "Captured from a real VT-DET-0001 run on a flat grey 640x480 PNG (workspace, 2026-10-12).",
+ "response": {
+  "schema": "visiontra.experimental_inference/1",
+  "request_id": "bc48a115b6296f14",
+  "inference_id": "6f210c2d8bee4af4b5d14842ae1b58c1",
+  "status": "completed",
+  "outcome": "no_detections",
+  "model": {
+   "model_id": "VT-DET-0001",
+   "version": "0.1.0",
+   "architecture": "YOLOX-Tiny",
+   "readiness": "EVALUATED_LIMITED",
+   "supported_classes": [],
+   "experimental_classes": [
+    "dent"
+   ],
+   "weights_sha256": "69114ceab4c23f3d8d80d18468636f3e2774c785b7883102dfcc8eaf0fba2d3e",
+   "intended_use": "Experimental engineering evaluation in a development environment. Not for aircraft maintenance decisions.",
+   "operational_use": false,
+   "evidence": {
+    "model_card": "docs/MODEL_CARD.md",
+    "evaluation_report": "docs/MODEL_EVALUATION_REPORT.md",
+    "experiment_log": "docs/EXPERIMENT_LOG.md",
+    "artifacts": "docs/MODEL_ARTIFACTS.md"
+   }
+  },
+  "image": {
+   "width": 640,
+   "height": 480,
+   "orientation": 1,
+   "format": "PNG",
+   "sha256": "b991562827cde85fd430a8d9b3cb7928165af552d6462e712384f5dd76cde868",
+   "coordinate_frame": "oriented_image_pixels"
+  },
+  "preprocessing": {
+   "mode": "letterbox",
+   "S_w": 416,
+   "S_h": 416,
+   "r_x": 0.65,
+   "r_y": 0.65,
+   "pad_x": 0,
+   "pad_y": 52
+  },
+  "inference_settings": {
+   "score_threshold": {
+    "dent": 0.05
+   },
+   "nms_iou": 0.65,
+   "review_threshold": {
+    "dent": 0.075
+   },
+   "source": "model bundle thresholds.json, chosen on the validation split",
+   "note": "Inference setting of an experimental model \u2014 not an inspector-approved operational threshold."
+  },
+  "predictions": [],
+  "prediction_count": 0,
+  "suppressed": {
+   "below_threshold": 100,
+   "degenerate": 0
+  },
+  "warnings": [
+   "Experimental model \u2014 dent only.",
+   "Research output. Not validated for aircraft maintenance decisions.",
+   "Predictions may be missed or incorrectly localised. Human inspection is required.",
+   "No detection above the threshold. This does not establish that the surface is free of defects.",
+   "Decision support only: every detection must be reviewed by a qualified person before any maintenance decision."
+  ],
+  "experimental": {
+   "mode": "development_only",
+   "banner": "EXPERIMENTAL \u2014 dent only \u2014 development use. Not an inspection finding. Not for maintenance decisions.",
+   "scope_classes": [
+    "dent"
+   ],
+   "readiness": "EVALUATED_LIMITED",
+   "operational_use": false,
+   "findings_eligible": false,
+   "report_eligible": false,
+   "promotion_gate": "VT-GATE-OP-01",
+   "promotion_gate_passed": false
+  },
+  "device": "cpu",
+  "timing_ms": {
+   "upload_read": 0.1,
+   "validation": 9.2,
+   "preprocess": 6.1,
+   "model": 172.5,
+   "postprocess": 2.5,
+   "end_to_end": 191.5
+  },
+  "record": {
+   "kind": "audit_event",
+   "audit_event_id": "fd3541f7454e4d05b0c221a213b4dca9",
+   "action": "experimental_inference.run",
+   "image_stored": false,
+   "note": "Experimental run recorded in the audit log only. It is not an inspection, finding or report."
+  },
+  "inferred_at": "2026-10-12T01:22:56Z"
+ }
+}

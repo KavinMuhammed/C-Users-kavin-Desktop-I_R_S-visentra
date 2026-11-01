@@ -1,0 +1,35 @@
+# systemd unit for VisionTra staging on Linux (docs/STAGING_PLAN.md §3). Install:
+#   sudo cp infra/staging/visiontra-staging.service /etc/systemd/system/ && sudo systemctl daemon-reload
+#   sudo systemctl enable --now visiontra-staging
+# Assumes: install dir /opt/visiontra (the release bundle), venv /opt/visiontra/.venv, config /opt/visiontra/.env,
+# data in VISENTRA_DATA_DIR (e.g. /var/lib/visiontra/data), service user "visiontra" without a login shell.
+[Unit]
+Description=VisionTra API (staging)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=visiontra
+Group=visiontra
+WorkingDirectory=/opt/visiontra
+# caches (torch, onnxruntime) go to the writable data volume, not the read-only home
+Environment=HOME=/var/lib/visiontra XDG_CACHE_HOME=/var/lib/visiontra/.cache PYTHONDONTWRITEBYTECODE=1
+# unbuffered: the JSON request logs reach the journal immediately and are not lost if the process dies
+Environment=PYTHONUNBUFFERED=1
+# migrations run (with an automatic SQLite backup first) on start-up; one process only (in-process limits and model)
+ExecStart=/opt/visiontra/.venv/bin/uvicorn visentra_api.main:app --app-dir apps/api --host 127.0.0.1 --port 8000 --proxy-headers --forwarded-allow-ips 127.0.0.1 --no-server-header
+Restart=on-failure
+RestartSec=5
+# allow in-flight analyses and report renders to finish
+TimeoutStopSec=60
+KillSignal=SIGINT
+# hardening: the service writes only to its data directory
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/visiontra
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

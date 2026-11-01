@@ -1,0 +1,64 @@
+{
+ "model_id": "VT-DET-0002",
+ "source": "experiments/confidence_tiers/VT-DET-0002.json",
+ "split": "valid",
+ "images": 886,
+ "match_iou": 0.5,
+ "rule": "likely only where validation precision >= 0.5 with >= 20 boxes; hit rate = matched boxes / boxes in the tier",
+ "classes": {
+  "crack": {
+   "bands": [
+    {
+     "from": 0.025,
+     "to": 0.05,
+     "boxes": 388,
+     "hit_rate": 0.054,
+     "tier": "unlikely"
+    },
+    {
+     "from": 0.05,
+     "to": null,
+     "boxes": 715,
+     "hit_rate": 0.133,
+     "tier": "possible"
+    }
+   ]
+  },
+  "dent": {
+   "bands": [
+    {
+     "from": 0.025,
+     "to": 0.05,
+     "boxes": 274,
+     "hit_rate": 0.036,
+     "tier": "unlikely"
+    },
+    {
+     "from": 0.05,
+     "to": null,
+     "boxes": 446,
+     "hit_rate": 0.164,
+     "tier": "possible"
+    }
+   ]
+  },
+  "corrosion": {
+   "bands": [
+    {
+     "from": 0.275,
+     "to": 0.425,
+     "boxes": 47,
+     "hit_rate": 0.191,
+     "tier": "possible"
+    },
+    {
+     "from": 0.425,
+     "to": null,
+     "boxes": 231,
+     "hit_rate": 0.719,
+     "tier": "likely"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,15 @@
+global_hawk.glb — NASA Global Hawk (RQ-4) 3D model
+
+Source:   NASA 3D Resources, https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Global%20Hawk
+          file "Global Hawk.glb", 1,184,092 bytes,
+          sha256 75b62cc2fa101fc517b8be4ebe79a7cc5206bcce38efbf104dde7414c810b667 (downloaded 2026-10-24)
+Terms:    NASA media, including 3D model polygon data, are generally not subject to copyright in the United States
+          (https://www.nasa.gov/nasa-brand-center/images-and-media/). NASA is acknowledged as the source.
+          Use in VisionTra does not imply endorsement by NASA. The NASA insignia and logotype are protected marks
+          and are NOT included: they appeared only in the source textures, which were removed.
+Changes:  Converted once offline by scripts/assets/convert_global_hawk.py (DracoPy 2.2.0, Apache-2.0, used only for
+          the conversion): Draco compression decoded, all textures, images and UVs removed, node rotation baked
+          (Y up, nose +Z), normalised to fuselage length 1, 16-bit indices. Geometry otherwise unchanged
+          (37,120 triangles). Output 848,792 bytes, sha256 b968f1285d86e6b219f35642a4e5e122ed63835b1e3cf7fbf804f76fa704da2e.
+Use:      Illustrative reference airframe for locating inspection components. Not a certified or dimensionally
+          verified digital twin, and not the aircraft being inspected.

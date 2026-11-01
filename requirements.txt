@@ -27,3 +27,6 @@ certifi>=2026.10.18          # PYSEC-2026-4320 (distrusted emSign root)
 filelock>=4.2.1              # CVE-2026-112907/-112913/-112940
 opentelemetry-api>=1.45.1    # CVE-2026-114603 (tracestate ReDoS)
 setuptools>=84.1.0           # GHSA-xmj3-9gf7-h52w (also required at build time by pyproject.toml)
+
+# Install the existing API and ML packages from this checkout.
+-e .

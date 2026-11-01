@@ -1,0 +1,117 @@
+{
+ "schema": "visiontra.experiment_run/1",
+ "experiment_id": "VT-EXP-003",
+ "run_id": "VT-EXP-003-20261011T114002Z",
+ "created_at": "2026-10-11T11:40:02Z",
+ "status": "completed",
+ "config_sha256": "b0538dc94705a7de7b22e71c2bb721dfca7844ebc65ced4e9ec4cb48db378384",
+ "events": [
+  {
+   "at": "2026-10-11T11:40:05Z",
+   "event": "started",
+   "device": "cpu",
+   "train_images": 7822,
+   "valid_images": 711
+  },
+  {
+   "at": "2026-10-11T16:46:38Z",
+   "event": "completed",
+   "best": {
+    "value": 0.020392240738684245,
+    "epoch": 19,
+    "metric": "AP50_95"
+   }
+  }
+ ],
+ "smoke": false,
+ "device": "cpu",
+ "classes": [
+  "dent"
+ ],
+ "mapping": {
+  "mapping_id": "CMAP-001",
+  "version": 1,
+  "taxonomy": "TAX-1.0",
+  "sha256": "51eb0843048a90a60529ba6bdfc07687b7170d6da38078bd9debbf1f4f01412a"
+ },
+ "data": {
+  "prep_id": "VT-PREP-001",
+  "datasets": [
+   "VT-DS-001"
+  ],
+  "train": {
+   "images": 7822,
+   "assets": 3045,
+   "photo_groups": 840,
+   "images_with_target": 3503,
+   "images_without_target": 4319,
+   "unlabelled_images": 0,
+   "instances": {
+    "dent": 7528
+   },
+   "images_containing": {
+    "dent": 3503
+   },
+   "dropped_source_instances": {
+    "crack": 7518,
+    "paint-off": 561,
+    "scratch": 158,
+    "missing-head": 711
+   },
+   "split_digest": "1411dbc3930c8fab2d4e90b3502b35bbd0fe31bc7dcdc9f6bedd37b0a7be0939"
+  },
+  "valid": {
+   "images": 711,
+   "assets": 711,
+   "photo_groups": 120,
+   "images_with_target": 247,
+   "images_without_target": 464,
+   "unlabelled_images": 0,
+   "instances": {
+    "dent": 536
+   },
+   "images_containing": {
+    "dent": 247
+   },
+   "dropped_source_instances": {
+    "crack": 921,
+    "paint-off": 29,
+    "missing-head": 32,
+    "scratch": 11
+   },
+   "split_digest": "3065433bb7ced1fd31866ea38591e7af74a1ece2570378d19176a828ea446621"
+  },
+  "valid_subset": "one_file_per_asset",
+  "train_sampling": "one_file_per_asset_per_epoch",
+  "split_files": {
+   "train": "datasets/splits/VT-PREP-001/train.csv",
+   "valid": "datasets/splits/VT-PREP-001/valid.csv",
+   "test": "datasets/splits/VT-PREP-001/test.csv"
+  }
+ },
+ "epochs_planned": 20,
+ "started_at": "2026-10-11T11:40:05Z",
+ "pretrained": {
+  "source_url": "https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_tiny.pth",
+  "licence": "Apache-2.0 (YOLOX repository licence; COCO-pretrained)",
+  "sha256": "9de513de589ac98bb92d3bca53b5af7b9acfa9b0bacb831f7999d0f7afaee8f0",
+  "loaded_tensors": 456,
+  "skipped_shape_mismatch": [
+   "head.cls_preds.0.bias",
+   "head.cls_preds.0.weight",
+   "head.cls_preds.1.bias",
+   "head.cls_preds.1.weight",
+   "head.cls_preds.2.bias",
+   "head.cls_preds.2.weight"
+  ],
+  "not_in_checkpoint": []
+ },
+ "epochs_completed": 20,
+ "best": {
+  "value": 0.020392240738684245,
+  "epoch": 19,
+  "metric": "AP50_95"
+ },
+ "ended_at": "2026-10-11T16:46:38Z",
+ "duration_seconds": 18393
+}

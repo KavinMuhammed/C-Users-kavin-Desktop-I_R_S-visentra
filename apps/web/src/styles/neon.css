@@ -1,0 +1,109 @@
+/* ==========================================================================
+   styles/neon.css — Phase 19 "neon hangar" layer (loaded last).
+   Aerospace night console: a calibrated cyan grid with a slow inspection sweep,
+   neon-edged glass panels, glowing detection markers and plain-language result
+   components. Decoration never sits on top of inspection evidence, and every
+   animation stops under prefers-reduced-motion (or the app's reduced-motion setting).
+   ========================================================================== */
+:root {
+  --neon-cyan: #3FE6FF; --neon-teal: #2EF2C9; --neon-ice: #BDF6FF; --neon-amber: #FFC14D; --neon-red: #FF4F7B; --neon-violet: #9B8CFF;
+  --neon-glow: 0 0 0 1px rgba(63, 230, 255, .22), 0 0 24px -6px rgba(63, 230, 255, .45);
+  --neon-glow-soft: 0 0 0 1px rgba(63, 230, 255, .12), 0 10px 40px -18px rgba(63, 230, 255, .35);
+  --panel: linear-gradient(180deg, rgba(16, 26, 46, .82), rgba(9, 15, 28, .86));
+}
+
+/* ---------- app backdrop: precision grid + slow sweep (dark theme only) ---------- */
+:root[data-theme="dark"] body::before, :root[data-theme="dark"] body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+:root[data-theme="dark"] body::before {
+  background:
+    linear-gradient(rgba(63, 230, 255, .045) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgba(63, 230, 255, .045) 1px, transparent 1px) 0 0 / 48px 48px,
+    radial-gradient(1100px 520px at 78% -8%, rgba(63, 230, 255, .10), transparent 62%),
+    radial-gradient(800px 480px at 0% 105%, rgba(155, 140, 255, .08), transparent 60%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, .55) 70%, rgba(0, 0, 0, .25) 100%);
+}
+:root[data-theme="dark"] body::after {
+  background: linear-gradient(180deg, transparent 0, rgba(63, 230, 255, .07) 48%, rgba(189, 246, 255, .14) 50%, rgba(63, 230, 255, .07) 52%, transparent 100%) 0 0 / 100% 220px no-repeat;
+  animation: neon-sweep 14s linear infinite; opacity: .55;
+}
+@keyframes neon-sweep { from { background-position: 0 -240px; } to { background-position: 0 calc(100vh + 240px); } }
+.app, .main, main { position: relative; z-index: 1; }
+
+/* ---------- glass panels with a neon edge ---------- */
+:root[data-theme="dark"] .card { background: var(--panel); border-color: rgba(63, 230, 255, .10); box-shadow: inset 0 1px 0 rgba(189, 246, 255, .05), 0 18px 50px -30px rgba(0, 0, 0, .8); backdrop-filter: blur(10px); }
+:root[data-theme="dark"] .card:hover { border-color: rgba(63, 230, 255, .20); box-shadow: var(--neon-glow-soft); }
+:root[data-theme="dark"] .card-h { border-bottom-color: rgba(63, 230, 255, .08); }
+:root[data-theme="dark"] .card-h h3 { letter-spacing: .01em; }
+:root[data-theme="dark"] .sidebar { background: linear-gradient(180deg, rgba(8, 13, 26, .92), rgba(6, 10, 20, .96)); border-right-color: rgba(63, 230, 255, .10); }
+:root[data-theme="dark"] .nav-item[aria-current="page"] { background: linear-gradient(90deg, rgba(63, 230, 255, .16), rgba(63, 230, 255, .02)); color: var(--neon-ice); box-shadow: inset 2px 0 0 var(--neon-cyan), -6px 0 18px -6px rgba(63, 230, 255, .7); }
+:root[data-theme="dark"] .page-h h1 { background: linear-gradient(90deg, #F3FCFF 0%, var(--neon-ice) 45%, var(--neon-cyan) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 28px rgba(63, 230, 255, .18); }
+:root[data-theme="dark"] .btn.primary { box-shadow: 0 0 0 1px rgba(189, 246, 255, .35) inset, 0 6px 22px -8px rgba(63, 230, 255, .75); }
+:root[data-theme="dark"] .btn.primary:hover { box-shadow: 0 0 0 1px rgba(189, 246, 255, .55) inset, 0 8px 30px -6px rgba(63, 230, 255, .95); }
+
+/* ---------- detection markers: numbers on the image, words in the panel ---------- */
+.av-box.ai { box-shadow: 0 0 0 1px color-mix(in srgb, var(--c) 55%, transparent), 0 0 calc(14px / var(--z, 1)) color-mix(in srgb, var(--c) 45%, transparent); }
+.av-box.ai.sel { box-shadow: 0 0 0 2px var(--c), 0 0 calc(22px / var(--z, 1)) var(--c); }
+.av-num { position: absolute; left: 0; top: 0; transform-origin: 0 0; transform: translate(-50%, -50%) scale(calc(1 / var(--z, 1))); min-width: 20px; height: 20px; padding: 0 5px;
+  display: grid; place-items: center; border-radius: 999px; background: #07101F; color: var(--c); border: 1.5px solid var(--c); font: 800 11px/1 var(--font-mono, ui-monospace);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--c) 70%, transparent); pointer-events: none; }
+
+/* ---------- AI result in plain words ---------- */
+.sum-card .card-h { background: linear-gradient(90deg, rgba(63, 230, 255, .08), transparent 70%); }
+.sum-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.sum-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 12px; background: rgba(255, 255, 255, .025); border: 1px solid rgba(255, 255, 255, .05); }
+.sum-dot { flex: none; width: 10px; height: 10px; margin-top: 5px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
+.sum-st { font-size: var(--fs-sm); font-weight: 600; padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; }
+.sum-row.t-bad .sum-st { color: var(--neon-red); background: rgba(255, 79, 123, .10); }
+.sum-row.t-warn .sum-st { color: var(--neon-amber); background: rgba(255, 193, 77, .10); }
+.sum-row.t-ok .sum-st { color: var(--neon-teal); background: rgba(46, 242, 201, .08); }
+.sum-row.t-muted .sum-st { color: var(--fg-3); background: rgba(255, 255, 255, .03); }
+.sum-row.t-bad { border-color: rgba(255, 79, 123, .25); box-shadow: 0 0 22px -12px rgba(255, 79, 123, .8); }
+
+/* ---------- tiers, grouped list, "other" type ---------- */
+.tier-pill { font-size: 11px; font-weight: 700; letter-spacing: .02em; padding: 2px 8px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.tier-likely { color: var(--neon-red); background: rgba(255, 79, 123, .10); box-shadow: 0 0 12px -4px rgba(255, 79, 123, .7); }
+.tier-possible { color: var(--neon-amber); background: rgba(255, 193, 77, .08); }
+.tier-unlikely { color: var(--fg-3); background: transparent; border-style: dashed; }
+.aero-lowgrp { border-top: 1px dashed rgba(255, 255, 255, .10); padding: 8px 12px 10px; display: grid; gap: 6px; }
+.aero-lowgrp-h { all: unset; cursor: pointer; display: flex; gap: 8px; align-items: center; font-size: var(--fs-sm); color: var(--fg-2); }
+.aero-lowgrp-h:focus-visible { outline: 2px solid var(--neon-cyan); outline-offset: 3px; border-radius: 6px; }
+.aero-lowgrp .aero-dets { opacity: .85; }
+.aero-none { padding: 12px 16px; margin: 0; }
+.other-type { color: var(--fg-2); border: 1px solid rgba(148, 163, 184, .35); border-radius: 999px; padding: 1px 8px; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- guidance: six tabs wrap neatly ---------- */
+.guide-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+:root[data-theme="dark"] .guide-tab.on { box-shadow: var(--neon-glow); }
+
+/* ---------- sound toggle in the top bar ---------- */
+.snd-toggle[aria-pressed="true"] { color: var(--neon-cyan); filter: drop-shadow(0 0 6px rgba(63, 230, 255, .8)); }
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) { :root[data-theme="dark"] body::after { animation: none; opacity: 0; } }
+:root[data-reduce-motion] body::after { animation: none !important; opacity: 0 !important; }
+
+/* ---------- intro: laser sweep, particles and the scan HUD ---------- */
+.vti-laser { position: absolute; top: 8%; bottom: 8%; left: 0; width: 2px; background: linear-gradient(180deg, transparent, var(--neon-cyan) 20%, #fff 50%, var(--neon-cyan) 80%, transparent);
+  box-shadow: 0 0 18px 4px rgba(63, 230, 255, .55), 0 0 60px 18px rgba(63, 230, 255, .18); opacity: 0; pointer-events: none; }
+.vti.is-playing .vti-laser { animation: vti-laserx 2.6s cubic-bezier(.45, 0, .2, 1) .9s 1 both; }
+@keyframes vti-laserx { 0% { left: 4%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 96%; opacity: 0; } }
+.vti-particles { position: absolute; inset: 0; pointer-events: none; }
+.vti-particles i { position: absolute; left: calc(5% + var(--i) * 5.2%); bottom: -4%; width: 2px; height: 2px; border-radius: 50%; background: var(--neon-ice); box-shadow: 0 0 6px var(--neon-cyan); opacity: 0; }
+.vti.is-playing .vti-particles i { animation: vti-float calc(5s + var(--i) * .17s) linear calc(var(--i) * .12s) infinite; }
+@keyframes vti-float { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: .8; } 100% { transform: translateY(-105vh); opacity: 0; } }
+.vti-hud { position: absolute; left: 3%; bottom: 2%; width: min(260px, 40vw); padding: 12px 14px; border: 1px solid rgba(63, 230, 255, .28); border-radius: 12px; background: rgba(4, 10, 20, .55);
+  backdrop-filter: blur(6px); font: 600 11px/1.2 var(--font-mono, ui-monospace); letter-spacing: .14em; color: var(--neon-ice); box-shadow: 0 0 30px -12px rgba(63, 230, 255, .8); opacity: 0; }
+.vti.is-playing .vti-hud, .vti.is-static .vti-hud { animation: vti-hudin .5s ease .6s both; }
+@keyframes vti-hudin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.vti-hud-h { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; color: var(--neon-cyan); }
+.vti-hud-h .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); animation: vti-hudblink 1s steps(2) infinite; }
+@keyframes vti-hudblink { 50% { opacity: .2; } }
+.vti-hud-r { display: grid; grid-template-columns: 92px 1fr; align-items: center; gap: 10px; margin: 7px 0; color: var(--c); }
+.vti-hud-r b { height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .08); overflow: hidden; }
+.vti-hud-r b i { display: block; height: 100%; width: 0; background: var(--c); box-shadow: 0 0 10px var(--c); }
+.vti.is-playing .vti-hud-r b i { animation: vti-hudfill 1.1s ease var(--d) both; }
+.vti.is-static .vti-hud-r b i { width: 100%; }
+@keyframes vti-hudfill { to { width: 100%; } }
+.vti-hud-f { margin-top: 10px; color: var(--fg-3); font-size: 10px; }
+.vti.is-static .vti-laser, .vti.is-static .vti-particles { display: none; }
+@media (max-width: 760px) { .vti-hud { display: none; } }

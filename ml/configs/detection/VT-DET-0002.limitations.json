@@ -1,0 +1,10 @@
+[
+  "Three classes: crack, dent, corrosion. 'crack' follows the VT-DS-001 source labels, which also mark holes, tears and other skin ruptures: read it as 'crack or skin rupture'.",
+  "Corrosion was learned from one Boeing 747 (VT-DS-002 'Rust', drone frames); results on other aircraft, paint systems and corrosion types are unknown.",
+  "Class mappings are PROVISIONAL_ACCEPTED by product-owner decision (CMAP-001 v2), not verified by a qualified inspector.",
+  "Trained and evaluated on public datasets (VT-DS-001, VT-DS-002); the test split is held out by photo group, not by aircraft, so it is not an aircraft-independent evaluation.",
+  "Accuracy is limited (see the recorded held-out evaluation): the model misses many real defects and raises false alarms. A missing detection never means the surface is free of defects.",
+  "Background images (ImageNet samples and generated non-photos) teach the model to stay silent on unrelated content, and an aircraft-surface check (VT-GATE-0001) runs first; neither is a guarantee on unusual images.",
+  "Robustness augmentation (blur, noise, JPEG, greyscale, contrast) targets phone, drone and AI-generated pictures; it was not separately evaluated on AI-generated images.",
+  "Decision support only. Every detection is a pending AI proposal that an engineer must confirm, reject or reclassify. Confidence is model certainty, not severity or airworthiness risk."
+]

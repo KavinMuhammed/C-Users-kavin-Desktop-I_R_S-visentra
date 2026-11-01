@@ -1,0 +1,19 @@
+{
+ "python": "3.13.16",
+ "torch": "2.14.1+cu130",
+ "torchvision": "0.29.1+cu130",
+ "numpy": "2.5.3",
+ "pillow": "12.3.0",
+ "pycocotools": "2.0.11",
+ "yolox": "vendored 0.3.0 @ 41977848 (model code only)",
+ "platform": "Linux-6.18.44-fc-v114-x86_64-with-glibc2.39",
+ "cpu": "x86_64",
+ "cpu_count": 2,
+ "device": "cpu",
+ "cuda": null,
+ "torch_threads": 2,
+ "source": {
+  "commit": "bee3a1c4bcedb8d7229975cf4898ddbe099aa802",
+  "ml_code_dirty": false
+ }
+}

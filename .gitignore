@@ -46,3 +46,24 @@ datasets/negatives/*/images/
 models/gate/**/coco.pth
 tests/ui/aero/*.png
 .venv-gpu/
+
+# Local environments, credentials and runtime artifacts must never be published.
+.venv/
+venv/
+.env.*
+!.env.example
+*.env
+!*.env.example
+.dev_secret
+.vercel/
+artifacts/
+quarantine/
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+apps/web/dist/
+
+# Generated package output and historical browser-run artifacts.
+build/
+tests/ui/

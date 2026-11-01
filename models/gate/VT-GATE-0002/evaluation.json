@@ -1,0 +1,195 @@
+{
+ "valid": {
+  "v1_rule": {
+   "aircraft": {
+    "n": 232,
+    "relevant": 231,
+    "uncertain": 0,
+    "irrelevant": 1,
+    "not_rejected_rate": 0.9957
+   },
+   "other": {
+    "n": 194,
+    "relevant": 0,
+    "uncertain": 0,
+    "irrelevant": 194,
+    "admitted_rate": 0.0
+   }
+  },
+  "v1_rule_plus_crops": {
+   "aircraft": {
+    "n": 232,
+    "relevant": 232,
+    "uncertain": 0,
+    "irrelevant": 0,
+    "not_rejected_rate": 1.0
+   },
+   "other": {
+    "n": 194,
+    "relevant": 10,
+    "uncertain": 0,
+    "irrelevant": 184,
+    "admitted_rate": 0.0515
+   }
+  },
+  "three_state": {
+   "aircraft": {
+    "n": 232,
+    "relevant": 232,
+    "uncertain": 0,
+    "irrelevant": 0,
+    "not_rejected_rate": 1.0
+   },
+   "other": {
+    "n": 194,
+    "relevant": 10,
+    "uncertain": 5,
+    "irrelevant": 179,
+    "admitted_rate": 0.0773
+   }
+  }
+ },
+ "test": {
+  "v1_rule": {
+   "aircraft": {
+    "n": 442,
+    "relevant": 442,
+    "uncertain": 0,
+    "irrelevant": 0,
+    "not_rejected_rate": 1.0
+   },
+   "other": {
+    "n": 197,
+    "relevant": 1,
+    "uncertain": 0,
+    "irrelevant": 196,
+    "admitted_rate": 0.0051
+   }
+  },
+  "three_state": {
+   "aircraft": {
+    "n": 442,
+    "relevant": 442,
+    "uncertain": 0,
+    "irrelevant": 0,
+    "not_rejected_rate": 1.0
+   },
+   "other": {
+    "n": 197,
+    "relevant": 6,
+    "uncertain": 7,
+    "irrelevant": 184,
+    "admitted_rate": 0.066
+   }
+  }
+ },
+ "test_errors": [
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n01910747_jellyfish.JPEG",
+   "label": "other",
+   "state": "uncertain"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n02091467_Norwegian_elkhound.JPEG",
+   "label": "other",
+   "state": "relevant"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n02256656_cicada.JPEG",
+   "label": "other",
+   "state": "uncertain"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n02536864_coho.JPEG",
+   "label": "other",
+   "state": "uncertain"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n02950826_cannon.JPEG",
+   "label": "other",
+   "state": "relevant"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n03424325_gasmask.JPEG",
+   "label": "other",
+   "state": "relevant"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n03492542_hard_disc.JPEG",
+   "label": "other",
+   "state": "uncertain"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n03998194_prayer_rug.JPEG",
+   "label": "other",
+   "state": "uncertain"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n04347754_submarine.JPEG",
+   "label": "other",
+   "state": "relevant"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n04389033_tank.JPEG",
+   "label": "other",
+   "state": "relevant"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n04487394_trombone.JPEG",
+   "label": "other",
+   "state": "uncertain"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n04515003_upright.JPEG",
+   "label": "other",
+   "state": "relevant"
+  },
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n07734744_mushroom.JPEG",
+   "label": "other",
+   "state": "uncertain"
+  }
+ ],
+ "incident_probes": [
+  {
+   "file": "INS-0004-a319-hail-nose.webp",
+   "evidence": {
+    "p": 0.0003,
+    "airplane": 0.0023,
+    "p_crop_max": 0.1905,
+    "airplane_crop_max": 0.4818,
+    "coco_top": "donut",
+    "coco_top_score": 0.7182
+   },
+   "v1": "irrelevant",
+   "three_state": "uncertain"
+  },
+  {
+   "file": "INS-0005-boeing-nose-dent.jpg",
+   "evidence": {
+    "p": 0.146,
+    "airplane": 0.9109,
+    "p_crop_max": 0.1894,
+    "airplane_crop_max": 0.7868,
+    "coco_top": "airplane",
+    "coco_top_score": 0.9109
+   },
+   "v1": "relevant",
+   "three_state": "relevant"
+  },
+  {
+   "file": "INS-0007-crack.webp",
+   "evidence": {
+    "p": 0.8978,
+    "airplane": 0.0019,
+    "p_crop_max": 0.4611,
+    "airplane_crop_max": 0.0247,
+    "coco_top": "kite",
+    "coco_top_score": 0.0453
+   },
+   "v1": "relevant",
+   "three_state": "relevant"
+  }
+ ],
+ "seconds": 249.1
+}

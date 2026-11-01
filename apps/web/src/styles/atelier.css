@@ -1,0 +1,142 @@
+/* Aerospace Forensics. Final composition layer; retain existing behaviour and category colours.
+   Breakpoints: 1100 workbench, 900 overview, 700 context, 600 touch. */
+:root {
+  --font-display: Bahnschrift, 'Segoe UI', sans-serif;
+  --font-sans:'Segoe UI',system-ui,sans-serif;
+  --sidebar-w:224px; --r-lg:6px; --r-xl:8px;
+  --sig-silver:#AAB1B8; --sig-platinum:#E1E0DB; --sig-obsidian:#090B0D;
+  --forensics-gold:#D7B36A; --nexus-violet:#B497FF; --nexus-gold-hi:#F3DDA6;
+}
+:root[data-theme="dark"] {
+  --bg:#0A0B10; --bg-sunken:#050507; --surface:#12131A; --surface-solid:#12131A;
+  --surface-hover:#191A23; --fg:#EAE5DA; --fg-2:#C1BEC8; --fg-3:#A4A3AE;
+  --border:#303039; --border-strong:#62616E; --bad:#FF7186; --focus:#F3DDA6;
+  --accent:#D7B36A; --accent-hover:#F3DDA6; --accent-fg:#1B150B;
+  --accent-soft:rgba(215,179,106,.09); --accent-line:rgba(215,179,106,.4);
+}
+:root[data-theme] body::before,:root[data-theme] body::after { display:none; }
+:root[data-theme] .card,:root[data-theme] .card:hover { border-radius:6px; box-shadow:none; transform:none; border-color:var(--border); }
+:root[data-theme] .card-h { background:none; border-bottom:1px solid var(--border); }
+:root[data-theme] .btn:hover { box-shadow:none; transform:none; }
+:root[data-theme="dark"] .btn.primary { background:linear-gradient(115deg,#F3DDA6,#D7B36A 65%,#E7C98A); color:#1B150B; border-color:#D7B36A; box-shadow:none; }
+:root[data-theme="dark"] .btn.primary:hover:not(:disabled) { background:#F3DDA6; box-shadow:none; }
+:root[data-theme] .sidebar { background:var(--bg-sunken); border-right:1px solid var(--border); }
+:root[data-theme="dark"] .nav-item[aria-current="page"] { background:rgba(215,179,106,.09); color:#F3DDA6; box-shadow:inset 2px 0 #D7B36A; font-weight:650; }
+:root[data-theme] :focus-visible { outline:2px solid var(--focus); outline-offset:3px; }
+.page-h { padding:8px 0 20px; border-bottom:1px solid var(--border); margin-bottom:24px; }
+:root[data-theme] .page-h h1 { font:500 clamp(26px,2.6vw,36px)/1.15 var(--font-display); letter-spacing:-.035em; color:var(--fg); background:none; -webkit-text-fill-color:currentColor; }
+.page-h p { margin:0; }
+/* The page already has a 20px flex gap; avoid doubling it with section margins. */
+.page > .page-h,.page > .kpis,.page > .hangar-hero { margin-bottom:0; }
+/* Operational content should be readable immediately, without the legacy blur reveal. */
+.page > * { animation:none; }
+.eyebrow { letter-spacing:.12em; font-size:11px; line-height:1.5; }
+:root[data-theme="dark"] .eyebrow { color:var(--forensics-gold); }
+.kpis { gap:0; margin:0 0 24px; border-bottom:1px solid var(--border); }
+:root[data-theme] .kpis .card { border:0; border-right:1px solid var(--border); border-radius:0; background:none; padding:16px 24px; }
+.kpis .num { font-variant-numeric:tabular-nums; }
+.hangar-hero { position:relative; display:grid; grid-template-columns:minmax(260px,5fr) minmax(0,7fr); border:1px solid var(--border); background:#0D0D14; color:#EAE5DA; margin:0 0 24px; overflow:hidden; }
+:root[data-theme] .hangar-hero .dash-cta { border:0; background:none; box-shadow:none; padding:32px; z-index:1; }
+.hangar-hero .dash-cta h2 { font:500 clamp(28px,3vw,42px)/1.08 var(--font-display); letter-spacing:-.04em; margin:8px 0; }
+.hangar-hero .dash-cta p { color:#BAC0C7; max-width:42ch; }
+.hangar-hero .aero-model-chip { border:0; border-radius:0; padding:8px 0; background:none; font-size:12px; color:#BAC0C7; }
+.hangar-hero .ac3d-card { border:0; border-radius:0; background:none; min-width:0; box-shadow:none; }
+.hangar-hero .ac3d-stage { height:400px; min-height:400px; background:none; }
+.hangar-hero .ac3d-view { background:none; border:0; }
+.hangar-caption { grid-column:1/-1; display:flex; justify-content:space-between; gap:12px; padding:12px 24px; font:11px var(--font-mono); color:#BAC0C7; border-top:1px solid #30363C; }
+.dash-lists { grid-template-columns:minmax(250px,1fr) minmax(0,2.4fr); }
+.card-h { padding:18px 20px; } .card-h h3 { letter-spacing:-.015em; }
+.table td { padding-top:16px; padding-bottom:16px; font-variant-numeric:tabular-nums; }
+.table th { font-size:12px; letter-spacing:.03em; text-transform:none; }
+.filterbar { padding:16px 0; } .empty { padding:40px 24px; }
+.aero-drop { min-height:220px; background:none; border:1px dashed var(--border-strong); margin:20px; }
+.aero-drop h2 { font:500 28px var(--font-display); }
+.aero-drop-art { background:none; border-radius:4px; }
+.aero-fields { padding:20px; }
+.aero-ws { grid-template-columns:minmax(0,1fr) 360px; gap:24px; align-items:start; }
+.evidence-column { min-width:0; }
+.evidence-heading { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; min-height:32px; }
+.evidence-heading .mono { overflow-wrap:anywhere; }
+.evidence-context { display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start; }
+.evidence-context > * { min-width:0; }
+.evidence-context .kv { overflow-wrap:anywhere; }
+.av-stage { --stage-h:clamp(460px,65vh,850px); background:#080A0D; border-radius:4px; }
+.av-bar { border-radius:4px; padding:10px; }
+.aero-disclaimer { line-height:1.6; }
+.evidence-explainer { border:1px solid var(--border); border-radius:6px; }
+.evidence-explainer > summary { padding:16px 20px; cursor:pointer; font-weight:600; font-size:14px; }
+.evidence-explainer > .card { border:0; }
+.ac3d-btn { min-height:36px; border-radius:4px; }
+:root[data-theme] .ac3d-btn:hover { box-shadow:none; }
+:root[data-theme="dark"] .ac3d-btn[aria-pressed="true"] { border-color:#D7B36A; color:#F3DDA6; }
+.ac3d-view.is-fallback .ac3d-ctl { display:none; }
+.airframe-static { width:100%;height:100%; }
+.vti { background:#050507; }
+.vti-grid,.vti-ring,.vti-scan,.vti-frame,.vti-horizon { display:none!important; }
+.vti-stage { position:absolute; left:28%; right:0; top:0; bottom:0; width:72%; height:100%; opacity:.9; }
+.vti-copy { position:absolute; top:50%; transform:translateY(-50%); padding:0; text-align:left; align-items:flex-start; left:7%; right:auto; width:40%; max-width:560px; }
+.vti-word { font-family:var(--font-display); letter-spacing:.06em; font-size:clamp(38px,5vw,82px); }
+.vti-statement { max-width:38ch; text-align:left; } .vti-actions { justify-content:flex-start; }
+.vti-gate { background:#0A0B10; }
+@media(max-width:1100px){
+  .aero-ws { grid-template-columns:1fr; }
+  .evidence-column { display:contents; }
+  .aero-side { order:2; }
+  .evidence-context { order:3; }
+  .dash-lists{grid-template-columns:1fr;}
+}
+@media(max-width:900px){ .hangar-hero { grid-template-columns:1fr; } .hangar-hero .dash-cta { padding:24px; } .hangar-hero .dash-cta h2 br { display:none; } .hangar-hero .ac3d-stage { height:340px;min-height:340px; } }
+@media(max-width:700px){ .evidence-context {grid-template-columns:1fr;} .hangar-caption{flex-direction:column;} .kpis{grid-template-columns:1fr 1fr;} }
+@media(max-width:600px){
+  .hangar-hero .ac3d-stage{height:310px;min-height:310px;}
+  .vti-stage{left:0;top:8%;width:100%;height:48%;}
+  .vti-copy{left:7%;width:86%;top:auto;bottom:7%;transform:none;}
+  .vti-statement{display:none;} .aero-fields{padding:20px;}
+  .av-stage{--stage-h:460px;} .ac3d-btn,.btn,.av-bar button {min-height:44px;}
+  .workbench-heading .row {max-width:100%;} .workbench-heading h1 {overflow-wrap:anywhere;}
+}
+@media(prefers-reduced-motion:reduce){.hangar-hero *,.vti *{animation:none!important;transition:none!important;}}
+
+/* Nexus material and instrument details: shared across real routes, never over evidence. */
+:root[data-theme="dark"] { --panel:#12131A; --neon-cyan:#D7B36A; --neon-ice:#F3DDA6; --sig-cyan:#B497FF; --sig-ice:#DAD0F5; --chart-2:#B497FF; --glow:none; --glow-cyan:none; }
+:root[data-theme="dark"] .card { backdrop-filter:none; }
+:root[data-theme="dark"] .header { background:#090A0E; border-bottom-color:#34313A; }
+:root[data-theme="dark"] .page-h h1 { text-shadow:none; }
+.main-col > .ambient,.content > .spot { display:none; }
+.nav-sec { font-size:11px; letter-spacing:.1em; margin-top:22px; }
+.nav-item { min-height:40px; }
+.nav-item[aria-current="page"] .nav-label { text-decoration:underline; text-underline-offset:5px; text-decoration-color:var(--accent-line); }
+.page-h .eyebrow { margin-bottom:4px; }
+.kpis { border-top:1px solid var(--border); }
+.kpis .metric-label { letter-spacing:.02em; }
+.hangar-hero { border-top:1px solid #6B5637; background:radial-gradient(ellipse at 78% 15%,rgba(75,44,146,.13),transparent 58%),#0D0D14; }
+.hangar-hero .dash-cta { align-self:center; }
+.hangar-hero .dash-cta h2 { max-width:12ch; font-size:clamp(30px,3.2vw,46px); }
+.hangar-hero .ac3d-hud { font-size:11px; letter-spacing:.06em; }
+.hangar-caption { color:#B8B2C2; border-top-color:#34313A; letter-spacing:.06em; }
+.hangar-caption span { font-family:var(--font-sans); letter-spacing:0; }
+.dash-lists > * { min-width:0; }
+.insp-recent strong,.tbl .mono { white-space:nowrap; }
+.tbl th { font-size:11px; letter-spacing:.04em; }
+.tbl td { font-size:13px; }
+.tbl .aero-th { width:42px; height:34px; }
+.tbl td:first-child .truncate { max-width:240px; }
+.aero-drop { border-color:#7D6844; background:linear-gradient(125deg,rgba(215,179,106,.04),transparent 60%); }
+.aero-drop:hover { border-color:#D7B36A; }
+.evidence-heading { border-bottom:1px solid var(--border); padding-bottom:10px; }
+.evidence-explainer > summary::marker { color:var(--nexus-violet); }
+.vti-copy { width:39%; left:6%; z-index:3; }
+.vti-word { text-shadow:none; }
+.vti-desc { color:#F3DDA6; text-shadow:none; }
+:root[data-theme] .vti-tag span:nth-child(2) { color:#B497FF; text-shadow:none; }
+.vti-stage { mask-image:linear-gradient(90deg,transparent,black 22%); }
+.vti-foot { color:#B5AFBD; font-size:12px; }
+.vti-statement { color:#CBC5D1; line-height:1.65; }
+.vti-topbar { gap:10px; }
+.vti-skip { min-height:40px; }
+.ac3d-credit { font-size:11px; color:#BFB9C8; }
+.ac3d-legend .lg-c { background:#EAE5DA; box-shadow:none; }
+.ac3d-legend .lg-a { background:#B497FF; box-shadow:none; }
+:root[data-contrast] { --fg:#FFFFFF; --fg-2:#E5E5EB; --fg-3:#C5C5CE; --border:#777781; }
+@media(max-width:1100px){.dash-lists{grid-template-columns:1fr;}}
+@media(max-width:600px){.vti-copy{width:86%;left:7%;}.vti-foot{font-size:12px;}.tbl td:first-child .truncate{max-width:220px;}.ac3d-credit{font-size:11px;}.hangar-hero .dash-cta h2{max-width:none;}}

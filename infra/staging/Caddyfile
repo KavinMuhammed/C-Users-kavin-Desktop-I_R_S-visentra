@@ -1,0 +1,26 @@
+# VisionTra staging: Caddy as the TLS-terminating reverse proxy on the same host as the API (docs/STAGING_PLAN.md).
+# Replace staging.example.org with the staging DNS name.
+#   Public DNS name:      Caddy obtains a Let's Encrypt certificate automatically (ports 80 and 443 reachable).
+#   Private / VPN-only:   uncomment `tls internal` (Caddy's own CA); the smoke test then needs --cacert <Caddy root.crt>.
+# The API listens on 127.0.0.1:8000 only, so uvicorn's default --forwarded-allow-ips=127.0.0.1 trusts exactly this proxy.
+
+staging.example.org {
+	# tls internal
+
+	# uploads: images ≤ 5 MB, OCR documents ≤ 10 MB (enforced by the app); the proxy allows headroom, not more
+	request_body {
+		max_size 30MB
+	}
+	encode gzip
+	header -Server
+	reverse_proxy 127.0.0.1:8000 {
+		# a first analysis can take ~10 s while the model loads; reports and OCR up to ~60 s
+		transport http {
+			response_header_timeout 120s
+		}
+	}
+	log {
+		output file /var/log/caddy/visiontra-staging.log
+		format json
+	}
+}

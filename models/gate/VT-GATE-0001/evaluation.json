@@ -1,0 +1,31 @@
+{
+ "valid": {
+  "aircraft_images": 232,
+  "other_images": 194,
+  "aircraft_accepted": 231,
+  "aircraft_rejected": 1,
+  "other_rejected": 194,
+  "other_accepted": 0,
+  "aircraft_recall": 0.9956896551724138,
+  "other_rejection_rate": 1.0
+ },
+ "test": {
+  "aircraft_images": 442,
+  "other_images": 197,
+  "aircraft_accepted": 442,
+  "aircraft_rejected": 0,
+  "other_rejected": 196,
+  "other_accepted": 1,
+  "aircraft_recall": 1.0,
+  "other_rejection_rate": 0.9949238578680203
+ },
+ "test_errors": [
+  {
+   "file": "datasets/negatives/VT-NEG-001/images/n02950826_cannon.JPEG",
+   "source": "VT-NEG-001:cannon",
+   "aircraft": 0,
+   "p": 0.0015
+  }
+ ],
+ "feature_seconds": 241.8
+}

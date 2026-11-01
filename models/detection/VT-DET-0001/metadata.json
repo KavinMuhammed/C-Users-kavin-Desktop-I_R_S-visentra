@@ -1,0 +1,186 @@
+{
+ "version": "0.1.0",
+ "task": "detection",
+ "architecture": "YOLOX",
+ "variant": "tiny",
+ "framework": {
+  "torch": "2.14.1+cu130",
+  "torchvision": "0.29.1+cu130",
+  "numpy": "2.5.3",
+  "pillow": "12.3.0",
+  "yolox": "vendored 0.3.0 @ 41977848 (model code only)",
+  "python": "3.13.16"
+ },
+ "classes": [
+  "dent"
+ ],
+ "supported_classes": [],
+ "experimental_classes": [
+  "dent"
+ ],
+ "input_size": [
+  416,
+  416
+ ],
+ "preprocessing": {
+  "mode": "letterbox",
+  "fill": 114,
+  "colour_order": "BGR",
+  "scale": "0-255, no mean/std normalisation (YOLOX convention)"
+ },
+ "taxonomy": "TAX-1.0",
+ "class_mapping": {
+  "mapping_id": "CMAP-001",
+  "version": 1,
+  "sha256": "51eb0843048a90a60529ba6bdfc07687b7170d6da38078bd9debbf1f4f01412a"
+ },
+ "dataset": {
+  "prep_id": "VT-PREP-001",
+  "datasets": [
+   "VT-DS-001"
+  ],
+  "splits": {
+   "train": "datasets/splits/VT-PREP-001/train.csv",
+   "valid": "datasets/splits/VT-PREP-001/valid.csv",
+   "test": "datasets/splits/VT-PREP-001/test.csv"
+  },
+  "train_split_digest": "1411dbc3930c8fab2d4e90b3502b35bbd0fe31bc7dcdc9f6bedd37b0a7be0939",
+  "valid_split_digest": "3065433bb7ced1fd31866ea38591e7af74a1ece2570378d19176a828ea446621",
+  "test_split_digest": "9b8e16cea46a7f45f307e805bab0aa44813d236cc08c15b3f4184b05daf9ebb1",
+  "licence": "CC BY 4.0 (VT-DS-001); attribution required \u2014 see DATASET_LICENCE_REGISTER"
+ },
+ "experiment": {
+  "experiment_id": "VT-EXP-003",
+  "run_id": "VT-EXP-003-20261011T114002Z",
+  "config_sha256": "b0538dc94705a7de7b22e71c2bb721dfca7844ebc65ced4e9ec4cb48db378384",
+  "best": {
+   "value": 0.020392240738684245,
+   "epoch": 19,
+   "metric": "AP50_95"
+  },
+  "checkpoint_epoch": 19,
+  "source": {
+   "commit": "bee3a1c4bcedb8d7229975cf4898ddbe099aa802",
+   "ml_code_dirty": false
+  }
+ },
+ "thresholds": {
+  "score_threshold": {
+   "dent": 0.05
+  },
+  "review_threshold": {
+   "dent": 0.075
+  },
+  "nms_iou": 0.65,
+  "match_iou": 0.5,
+  "policy": "score_threshold = argmax F2 (recall-weighted), review_threshold = argmax F1; chosen on the validation split"
+ },
+ "evaluation": {
+  "test": {
+   "evaluated_at": "2026-10-11T16:50:11Z",
+   "split": "test",
+   "subset": "eval_representatives",
+   "split_digest": "9b8e16cea46a7f45f307e805bab0aa44813d236cc08c15b3f4184b05daf9ebb1",
+   "AP50": 0.24744239076886398,
+   "AP50_95": 0.10050465858551447,
+   "per_class_at_threshold": {
+    "dent": {
+     "tp": 74,
+     "fp": 234,
+     "fn": 163,
+     "precision": 0.24025974025974026,
+     "recall": 0.31223628691983124,
+     "f1": 0.27155963302752295,
+     "score_threshold": 0.05,
+     "gt_instances": 237
+    }
+   }
+  },
+  "valid_evaluation": "valid-20261011T164928Z"
+ },
+ "weights_licence": {
+  "model_code": "Apache-2.0 (YOLOX, vendored)",
+  "pretrained_init": "Apache-2.0 (YOLOX repository licence; COCO-pretrained)",
+  "pretrained_source": "https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_tiny.pth",
+  "pretrained_sha256": "9de513de589ac98bb92d3bca53b5af7b9acfa9b0bacb831f7999d0f7afaee8f0",
+  "fine_tuning_data": "CC BY 4.0 (VT-DS-001) \u2014 attribution required"
+ },
+ "pretrained": {
+  "source_url": "https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_tiny.pth",
+  "licence": "Apache-2.0 (YOLOX repository licence; COCO-pretrained)",
+  "sha256": "9de513de589ac98bb92d3bca53b5af7b9acfa9b0bacb831f7999d0f7afaee8f0",
+  "loaded_tensors": 456,
+  "skipped_shape_mismatch": [
+   "head.cls_preds.0.bias",
+   "head.cls_preds.0.weight",
+   "head.cls_preds.1.bias",
+   "head.cls_preds.1.weight",
+   "head.cls_preds.2.bias",
+   "head.cls_preds.2.weight"
+  ],
+  "not_in_checkpoint": []
+ },
+ "readiness": "EVALUATED_LIMITED",
+ "readiness_reasons": [
+  "MLG-04: no per-class targets were agreed with a domain reviewer before the test run",
+  "MLG-06: missed defects have not been reviewed by a qualified person",
+  "MLG-01: dataset licence/provenance questions are open"
+ ],
+ "readiness_evidence": {
+  "data_ready": true,
+  "run_completed": true,
+  "thresholds_from_validation": true,
+  "final_test_evaluation": true,
+  "test_split_digest_matches": true,
+  "per_class_metrics": true,
+  "limitations_documented": true,
+  "targets_preregistered": null,
+  "targets_met": null,
+  "missed_defect_review_done": false,
+  "dataset_licence_cleared": false
+ },
+ "known_limitations": [
+  "Single class: 'dent' only. Crack and corrosion are not supported: their source mappings (VT-DS-001 'crack', VT-DS-002 'Rust') are UNRESOLVED in CMAP-001.",
+  "The 'dent' mapping itself is PROVISIONAL_ACCEPTED (agent spot check, no expert sign-off); source labels cover hail dents, impact damage and buckling without severity.",
+  "Trained and evaluated on VT-DS-001 only (Innovation Hangar v2, Roboflow export, 640\u00d7640 stretched images; photographer and aircraft identity undocumented).",
+  "The test split is a held-out phone-photo session (2023-05-12), independent of the training sessions, but very likely the same aircraft collection: NOT an aircraft-independent evaluation.",
+  "No verified defect-free (negative) images exist: false alarms on clean surfaces cannot be measured; 'no detection' never means 'no dent'.",
+  "Not evaluated on drone footage, other aircraft types, other sites, weather or operational lighting.",
+  "Decision support only. Scores are model confidence, not severity or airworthiness probability."
+ ],
+ "output_contract": "visiontra.detection_output/1 (ml/visentra_ml/detection/output.py)",
+ "artifact_format": "torch_state_dict",
+ "loading": "visentra_ml.detection.artifact.load(bundle_dir) \u2014 torch.load(weights_only=True)",
+ "model_id": "VT-DET-0001",
+ "format": "visiontra-detector/1",
+ "files": {
+  "config.json": {
+   "sha256": "790e6f8fd6b06ebfd93ab9a44ffad8331a576f9c908d802905aa25d23f7cf00d",
+   "bytes": 2862
+  },
+  "environment.json": {
+   "sha256": "beb4bced90625bd54ea4d8fb9f62bf35d1aeb1795cd63031cb630236268708b6",
+   "bytes": 452
+  },
+  "evaluation_test.json": {
+   "sha256": "832d02cea87217328fc06310109e69281a56a8e94473f8508d4200f6f6b257b5",
+   "bytes": 7363
+  },
+  "evaluation_valid.json": {
+   "sha256": "0a7ff0be731af5567dab1522f127e6bee6c66fd19d1f0b8ce8ea1d4f27889340",
+   "bytes": 14229
+  },
+  "model.pt": {
+   "sha256": "69114ceab4c23f3d8d80d18468636f3e2774c785b7883102dfcc8eaf0fba2d3e",
+   "bytes": 20345275
+  },
+  "run.json": {
+   "sha256": "05c94bd0b40e0c4a913d363d7ee80d535425a0cc67aa941870e7a1490ef02e3b",
+   "bytes": 2863
+  },
+  "thresholds.json": {
+   "sha256": "3a4d927b5188a695cbae193c8be69ba8f4528b5470b9ee7a11d4afa763cb446b",
+   "bytes": 8533
+  }
+ }
+}
