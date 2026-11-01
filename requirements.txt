@@ -1,0 +1,29 @@
+# Runtime (pinned; versions tested in this build)
+fastapi==0.142.2
+starlette==1.7.0
+uvicorn[standard]==0.54.0
+pydantic==2.13.5
+email-validator==2.3.0
+SQLAlchemy==2.1.3
+alembic==1.20.0
+python-multipart==0.0.32
+httpx==0.28.1
+pillow==13.0.0
+pillow-heif==1.8.1        # HEIC/HEIF (iPhone) uploads; without it HEIC is not advertised
+numpy>=1.26,<3        # 2.5 needs Python 3.12; 2.4.x is used on 3.10-3.11
+torch==2.14.1
+torchvision==0.29.1
+boto3==1.43.108
+psycopg[binary]==3.3.6
+# Local text evidence: bundled OCR models, selectable PDF text and scanned PDF rendering.
+rapidocr-onnxruntime==1.4.4
+onnxruntime==1.31.0
+pypdf==6.21.2
+pypdfium2==5.14.0
+# Transitive floors (pip-audit, 27 Oct 2026): these come in through httpx/requests, torch and fastapi. An older
+# environment kept vulnerable versions that a fresh resolve would not pick; the floors make every install safe.
+# Exact verified versions for Windows / Python 3.11 are in requirements.lock.
+certifi>=2026.10.18          # PYSEC-2026-4320 (distrusted emSign root)
+filelock>=4.2.1              # CVE-2026-112907/-112913/-112940
+opentelemetry-api>=1.45.1    # CVE-2026-114603 (tracestate ReDoS)
+setuptools>=84.1.0           # GHSA-xmj3-9gf7-h52w (also required at build time by pyproject.toml)

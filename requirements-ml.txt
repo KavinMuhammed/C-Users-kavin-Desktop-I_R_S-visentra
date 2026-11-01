@@ -1,0 +1,4 @@
+# Phase 7 detection training/evaluation (in addition to requirements.txt)
+-r requirements.txt
+pycocotools==2.0.11   # reference COCO AP implementation (BSD-2-Clause)
+# YOLOX model code is vendored under ml/visentra_ml/detection/third_party/yolox (Apache-2.0); no pip package needed.

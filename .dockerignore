@@ -1,0 +1,10 @@
+.git
+.venv
+.venv-gpu
+data
+datasets
+experiments
+tests/ui
+**/__pycache__
+*.pyc
+node_modules

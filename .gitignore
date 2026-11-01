@@ -1,0 +1,48 @@
+.env
+data/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+qa/*.png
+qa/up/
+qa/*.zip
+node_modules/
+tests/ui/up/
+tests/ui/*.png
+tests/ui/*.zip
+tests/ui/notes.txt
+tests/ui/insp/
+tests/ui/insp-*.png
+tests/ui/report-*.pdf
+tests/ui/inspection_e2e_results.json
+datasets/raw/
+datasets/archives/
+datasets/manifests/cache/
+# Phase 4 regenerable intermediates (large or contain dataset imagery); summaries and manifests are committed
+datasets/interim/*/features_*.jsonl
+datasets/interim/*/inventory.csv
+datasets/interim/*/near_duplicate_pairs.csv
+datasets/interim/*/contact_sheets/
+tests/ui/a11y_perf_results.json
+# Phase 7: model binaries and training checkpoints stay out of git (metadata, records and checksums are committed)
+models/**/*.pt
+models/**/*.pth
+experiments/**/checkpoints/
+experiments/**/*.tmp
+experiments/**/diagnostics/
+# Phase 8: development-only experimental inference outputs (never committed)
+experiments/dev-inference/
+tests/ui/exp/*
+!tests/ui/exp/experimental_e2e_results.json
+# Phase 10: persistence browser test outputs (screenshots, downloads); only the results file is committed
+tests/ui/p10/*
+!tests/ui/p10/persistence_e2e_results.json
+# Phase 11: review/report browser test outputs (screenshots, downloaded PDFs); only the results file is committed
+tests/ui/p11/*
+!tests/ui/p11/results.json
+
+# Phase 13: negative images (ImageNet samples, generated negatives); manifests are committed
+datasets/negatives/*/images/
+models/gate/**/coco.pth
+tests/ui/aero/*.png
+.venv-gpu/

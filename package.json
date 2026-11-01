@@ -1,0 +1,16 @@
+{
+  "name": "visiontra",
+  "version": "2.0.0",
+  "private": true,
+  "description": "VisionTra — smarter visual inspection of aircraft: detect, classify and document dents, cracks and corrosion with engineer review.",
+  "license": "UNLICENSED",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "dev": "node scripts/run.mjs dev",
+    "start": "node scripts/run.mjs start",
+    "build": "node scripts/run.mjs build",
+    "test": "node scripts/run.mjs test",
+    "test:frontend": "node --test tests/frontend/ac3d.test.js tests/frontend/aero.test.js tests/frontend/nexus.test.js",
+    "train:gpu": "train-detector-gpu.bat"
+  }
+}
