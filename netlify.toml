@@ -1,0 +1,13 @@
+# Netlify hosts the web UI only. The FastAPI/PyTorch backend cannot run on Netlify (long-running server,
+# model weights, background worker); run it from infra/Dockerfile and set VISIONTRA_API_URL so /api/* is proxied to it.
+# The base is apps/web so Netlify does not try to install the heavy ML requirements: build.py only needs the stdlib.
+[build]
+  base = "apps/web"
+  command = "python3 build.py"
+  publish = "dist"
+
+# Client-side routes (e.g. /inspection/<id>) fall back to the single-page app.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
