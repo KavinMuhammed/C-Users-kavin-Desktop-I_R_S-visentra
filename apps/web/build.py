@@ -20,7 +20,7 @@ missing = sorted({p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*.js")} - 
 if missing:
     raise SystemExit(f"Unbundled modules: {missing}")
 css = "\n".join((ROOT / p).read_text(encoding="utf-8") for p in CSS)
-js = "\n".join(f"/* â”€â”€ src/{p} â”€â”€ */\n" + (ROOT / p).read_text(encoding="utf-8") for p in JS)
+js = "\n".join(f"/* -- src/{p} -- */\n" + (ROOT / p).read_text(encoding="utf-8") for p in JS)
 WEB = Path(__file__).resolve().parent
 out = WEB / "dist"
 out.mkdir(exist_ok=True)

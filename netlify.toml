@@ -1,0 +1,20 @@
+# The web app is a single bundled page built by a dependency-free Python script.
+# The FastAPI/PyTorch backend cannot run on Netlify; /api/* is handled by the
+# `api` function, which forwards to VISIONTRA_API_URL when it is set.
+[build]
+  command = "python3 apps/web/build.py"
+  publish = "apps/web/dist"
+
+[build.environment]
+  PYTHON_VERSION = "3.13"
+
+[[headers]]
+  for = "/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
