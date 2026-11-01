@@ -1,0 +1,7 @@
+# Netlify hosts the static web UI only. The FastAPI/PyTorch backend (requirements.txt at the repo root)
+# cannot run on Netlify, so the build runs from apps/web, where no dependency manifest triggers a pip install.
+# build.py uses only the Python standard library.
+[build]
+  base = "apps/web"
+  command = "python3 build.py"
+  publish = "dist"
